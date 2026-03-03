@@ -8,8 +8,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL ?? "https://radu-az.github.io/pruebaRaduan/",
-  base: "/pruebaRaduan/",
+  site: process.env.SITE_URL ?? "https://generarecetas.com",
   compressHTML: true,
   prefetch: {
     prefetchAll: false,
