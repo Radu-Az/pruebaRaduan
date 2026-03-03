@@ -1,0 +1,25 @@
+---
+import SiteHeader from "../components/header/SiteHeader.astro";
+import ERecetaSection from "../components/landing/ERecetaSection.vue";
+import HeroSection from "../components/landing/HeroSection.vue";
+import ServicesSection from "../components/landing/ServicesSection.vue";
+import ConnectionsSection from "../components/landing/ConnectionsSection.astro";
+import NearbySection from "../components/landing/NearbySection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="GeneraRecetas | Receta electrónica veterinaria"
+  description="App de receta electrónica veterinaria con más de 15 años de experiencia: prescripción segura, trazabilidad, comunicación y gestión para el sector veterinario y ganadero."
+  canonical="/"
+>
+  <SiteHeader />
+
+  <main class="px-[14px] pb-0 pt-[24px] md:pt-[30px] min-[1200px]:px-[20px] min-[1200px]:pb-0 min-[1200px]:pt-[38px]">
+    <HeroSection />
+    <ERecetaSection client:visible />
+    <ServicesSection client:load />
+    <ConnectionsSection />
+    <NearbySection />
+  </main>
+</BaseLayout>

@@ -1,0 +1,122 @@
+---
+import "../styles/global.css";
+import SiteFooter from "../components/footer/SiteFooter.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+  bodyClass?: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article";
+  structuredData?: Record<string, unknown>[];
+}
+
+const {
+  title = "GeneraRecetas",
+  description = "GeneraRecetas impulsa la receta electrónica veterinaria y la gestión profesional del sector veterinario y ganadero.",
+  lang = "es",
+  bodyClass = "",
+  canonical,
+  image = "/images/meta/og-default.svg",
+  noindex = false,
+  type = "website",
+  structuredData = []
+} = Astro.props as Props;
+
+const siteName = "GeneraRecetas";
+const siteUrl = (Astro.site?.toString() || "https://generarecetas.com").replace(/\/$/, "");
+const fontStylesheetUrl =
+  "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap";
+
+const toAbsoluteUrl = (value: string) => {
+  if (!value) {
+    return siteUrl;
+  }
+
+  if (/^https?:\/\//i.test(value)) {
+    return value;
+  }
+
+  const path = value.startsWith("/") ? value : `/${value}`;
+  return `${siteUrl}${path}`;
+};
+
+const canonicalUrl = toAbsoluteUrl(canonical ?? Astro.url.pathname);
+const ogImageUrl = toAbsoluteUrl(image);
+const robotsContent = noindex ? "noindex, nofollow" : "index, follow";
+const pageTitle = title === siteName ? siteName : `${title}`;
+
+const defaultStructuredData: Record<string, unknown>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteName,
+    url: siteUrl,
+    logo: toAbsoluteUrl("/images/logos/logo-generarecetas.svg")
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    url: siteUrl
+  }
+];
+
+const structuredDataBlocks = [...defaultStructuredData, ...structuredData];
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#2f5668" />
+    <meta name="application-name" content={siteName} />
+    <meta name="author" content={siteName} />
+    <meta name="robots" content={robotsContent} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preload" href="/images/logos/logo-generarecetas.svg" as="image" type="image/svg+xml" />
+
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href={fontStylesheetUrl} as="style" />
+    <link rel="stylesheet" href={fontStylesheetUrl} />
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
+    <meta property="og:image:alt" content={pageTitle} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <title>{pageTitle}</title>
+
+    {
+      structuredDataBlocks.map((item) => (
+        <script type="application/ld+json" set:html={JSON.stringify(item)} />
+      ))
+    }
+  </head>
+  <body id="page-top" class={bodyClass}>
+    <slot />
+    <SiteFooter />
+  </body>
+</html>

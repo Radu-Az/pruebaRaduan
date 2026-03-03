@@ -1,0 +1,31 @@
+---
+import SiteHeader from "../components/header/SiteHeader.astro";
+import NewsYearFeed from "../components/news/NewsYearFeed.vue";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getAvailableNewsYears, getCurrentNewsYear, getNewsByYear } from "../lib/news-service";
+
+const fallbackYear = getCurrentNewsYear();
+let initialYears = [fallbackYear];
+let initialYear = fallbackYear;
+let initialItems = [];
+
+try {
+  const availableYears = await getAvailableNewsYears();
+  initialYears = availableYears.length ? availableYears : [fallbackYear];
+  initialYear = initialYears[0] ?? fallbackYear;
+  initialItems = await getNewsByYear(initialYear);
+} catch (error) {
+  console.error("[noticias] Initial SSR data error.", error);
+}
+---
+
+<BaseLayout
+  title="Noticias veterinarias y ganaderas | GeneraRecetas"
+  description="Actualidad y noticias del sector veterinario y ganadero: normativa, sanidad animal, medicamentos veterinarios y novedades relevantes."
+  canonical="/noticias"
+>
+  <SiteHeader />
+  <main class="mx-auto w-full max-w-[1200px] px-[14px] pb-[70px] pt-0 md:px-[20px] md:pb-[90px] md:pt-[24px]">
+    <NewsYearFeed client:idle initialYear={initialYear} initialYears={initialYears} initialItems={initialItems} />
+  </main>
+</BaseLayout>

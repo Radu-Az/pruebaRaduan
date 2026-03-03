@@ -1,0 +1,16 @@
+---
+import SiteHeader from "../components/header/SiteHeader.astro";
+import ContactSection from "../components/contact/ContactSection.vue";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contacto | GeneraRecetas"
+  description="Contacta con GeneraRecetas para solicitar informacion, resolver dudas o conocer mejor nuestra plataforma de receta electronica veterinaria."
+  canonical="/contacto"
+>
+  <SiteHeader />
+  <main class="px-[14px] pb-[24px] pt-0 md:px-[20px] md:pb-[34px]">
+    <ContactSection client:load />
+  </main>
+</BaseLayout>

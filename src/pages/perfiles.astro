@@ -1,0 +1,17 @@
+---
+import SiteHeader from "../components/header/SiteHeader.astro";
+import ProfilesSection from "../components/profiles/ProfilesSection.vue";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Perfiles | GeneraRecetas"
+  description="Perfiles de acceso de GeneraRecetas para propietarios, profesionales, comercializadoras, entidades y perfiles del sector veterinario y ganadero."
+  canonical="/perfiles"
+>
+  <SiteHeader />
+
+  <main class="px-[14px] pb-0 pt-[24px] md:pt-[30px] min-[1200px]:px-[20px] min-[1200px]:pt-[38px]">
+    <ProfilesSection client:media="(max-width: 1199px)" />
+  </main>
+</BaseLayout>

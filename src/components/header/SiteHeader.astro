@@ -1,0 +1,21 @@
+---
+import HeaderNav from "./HeaderNav.vue";
+---
+
+<header
+  class="landing-header sticky top-0 relative z-[300] isolate mx-auto flex w-full items-center justify-between gap-[10px] bg-[#efe9d3] px-[14px] pt-[10px] pb-[10px] shadow-none md:px-[20px] md:pb-[11px] min-[1200px]:gap-[16px] min-[1200px]:pl-[26px] min-[1200px]:pr-[0px] min-[1200px]:pt-[14px] min-[1200px]:pb-[14px]"
+>
+  <a class="landing-brand shrink-0" href="/" aria-label="Ir al inicio" data-astro-prefetch>
+    <img
+      src="/images/logos/logo-generarecetas.svg"
+      alt="GeneraRecetas"
+      class="block h-auto w-[184px] md:w-[200px] min-[1200px]:w-[230px]"
+      width="388"
+      height="81"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </a>
+
+  <HeaderNav client:load />
+</header>

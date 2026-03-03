@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Sin imagen disponible</title>
+  <desc id="desc">Marcador de posicion para noticias sin imagen.</desc>
+  <rect width="1200" height="675" fill="#e4e6e2" />
+  <rect x="420" y="205" width="360" height="265" rx="16" fill="#cfd5cd" />
+  <path d="M460 430 560 320l74 80 58-60 48 90z" fill="#b6c0b5" />
+  <circle cx="700" cy="285" r="34" fill="#b6c0b5" />
+</svg>

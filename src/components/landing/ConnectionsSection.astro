@@ -1,0 +1,153 @@
+---
+import { connections } from "../../data/landing";
+const accentTextIds = new Set(["gtr", "recevex"]);
+const logoScaleIds = new Set(["presvet", "recevet"]);
+---
+
+<section
+  class="relative mt-0 w-full py-[24px] md:py-[30px] min-[1200px]:py-[36px]"
+  aria-labelledby="connections-title"
+  data-connections-section
+>
+  <span class="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-gr-bg" aria-hidden="true"></span>
+  <span class="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 bg-gr-border/30" aria-hidden="true"></span>
+  <span class="pointer-events-none absolute left-1/2 bottom-0 h-px w-screen -translate-x-1/2 bg-gr-border/22" aria-hidden="true"></span>
+
+  <div class="mx-auto w-full max-w-[1200px] px-[16px] md:px-[24px] min-[1200px]:px-[32px]">
+    <h2 id="connections-title" class="connections-title gr-heading-2 text-center text-gr-gold">CONEXIONES</h2>
+
+    <div class="connections-reveal mt-[24px] border-y border-gr-border/35 py-[6px] min-[1200px]:mt-[32px]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 min-[1200px]:grid-cols-4">
+        {connections.map((connection, index) => (
+          <article
+            class="connections-item flex min-h-[168px] flex-col items-center justify-center border-t border-gr-border/30 px-[10px] py-[18px] text-center first:border-t-0 sm:[&:nth-child(-n+2)]:border-t-0 min-[1200px]:min-h-[186px] min-[1200px]:border-l min-[1200px]:border-t-0 min-[1200px]:first:border-l-0"
+            style={`animation-delay:${120 + index * 90}ms`}
+          >
+            {connection.logo ? (
+              <div class="flex h-[86px] w-full items-center justify-center">
+                <img
+                  src={connection.logo}
+                  alt={connection.alt}
+                  class:list={[
+                    "w-auto max-w-full object-contain transition-opacity duration-300 min-[1200px]:opacity-92 min-[1200px]:hover:opacity-100",
+                    logoScaleIds.has(connection.id) ? "max-h-[74px] md:max-h-[80px]" : "max-h-[62px]",
+                    connection.id === "recevet" ? "md:max-h-[84px]" : ""
+                  ]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : (
+              <div class="max-w-[34ch]">
+                <h3
+                  class:list={[
+                    "font-space leading-[1.25] font-[600] text-gr-blue transition-colors duration-200 min-[1200px]:hover:text-gr-gold",
+                    accentTextIds.has(connection.id) ? "text-[1.68rem] md:text-[1.82rem]" : "text-[1.25rem]"
+                  ]}
+                >
+                  {connection.title}
+                </h3>
+                <p
+                  class:list={[
+                    "mt-[4px] font-space leading-[1.18] font-[500] text-gr-blue/78",
+                    accentTextIds.has(connection.id) ? "text-[1.1rem] md:text-[1.16rem]" : "text-[0.92rem]"
+                  ]}
+                >
+                  ({connection.subtitle})
+                </p>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:inline>
+  @keyframes connections-reveal-title {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes connections-reveal-item {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  [data-connections-section] .connections-title {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    will-change: opacity, transform;
+  }
+
+  [data-connections-section] .connections-reveal .connections-item {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    will-change: opacity, transform;
+  }
+
+  [data-connections-section].is-visible .connections-title {
+    animation: connections-reveal-title 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  [data-connections-section].is-visible .connections-reveal .connections-item {
+    animation: connections-reveal-item 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-connections-section] .connections-title,
+    [data-connections-section] .connections-reveal .connections-item {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  const connectionSections = document.querySelectorAll("[data-connections-section]");
+
+  const activateSection = (section) => {
+    section.classList.add("is-visible");
+  };
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    connectionSections.forEach(activateSection);
+  } else if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          activateSection(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.22,
+        rootMargin: "0px 0px -6% 0px"
+      }
+    );
+
+    connectionSections.forEach((section) => observer.observe(section));
+  } else {
+    connectionSections.forEach(activateSection);
+  }
+</script>
