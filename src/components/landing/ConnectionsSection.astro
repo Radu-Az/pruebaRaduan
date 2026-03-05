@@ -6,22 +6,23 @@ const logoScaleIds = new Set(["presvet", "recevet"]);
 
 <section
   class="relative mt-0 w-full py-[24px] md:py-[30px] min-[1200px]:py-[36px]"
-  aria-labelledby="connections-title"
+  style="content-visibility: auto; contain-intrinsic-size: 620px;"
   data-connections-section
+  aria-labelledby="connections-title"
 >
   <span class="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-gr-bg" aria-hidden="true"></span>
   <span class="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 bg-gr-border/30" aria-hidden="true"></span>
   <span class="pointer-events-none absolute left-1/2 bottom-0 h-px w-screen -translate-x-1/2 bg-gr-border/22" aria-hidden="true"></span>
 
   <div class="mx-auto w-full max-w-[1200px] px-[16px] md:px-[24px] min-[1200px]:px-[32px]">
-    <h2 id="connections-title" class="connections-title gr-heading-2 text-center text-gr-gold">CONEXIONES</h2>
+    <h2 id="connections-title" class="connections-title connections-anim gr-heading-2 text-center text-gr-gold" style="--connections-delay: 0ms;">CONEXIONES</h2>
 
-    <div class="connections-reveal mt-[24px] border-y border-gr-border/35 py-[6px] min-[1200px]:mt-[32px]">
+    <div class="connections-anim mt-[24px] border-y border-gr-border/35 py-[6px] min-[1200px]:mt-[32px]" style="--connections-delay: 110ms;">
       <div class="grid grid-cols-1 sm:grid-cols-2 min-[1200px]:grid-cols-4">
         {connections.map((connection, index) => (
           <article
-            class="connections-item flex min-h-[168px] flex-col items-center justify-center border-t border-gr-border/30 px-[10px] py-[18px] text-center first:border-t-0 sm:[&:nth-child(-n+2)]:border-t-0 min-[1200px]:min-h-[186px] min-[1200px]:border-l min-[1200px]:border-t-0 min-[1200px]:first:border-l-0"
-            style={`animation-delay:${120 + index * 90}ms`}
+            class="connections-item connections-anim flex min-h-[168px] flex-col items-center justify-center border-t border-gr-border/30 px-[10px] py-[18px] text-center first:border-t-0 sm:[&:nth-child(-n+2)]:border-t-0 min-[1200px]:min-h-[186px] min-[1200px]:border-l min-[1200px]:border-t-0 min-[1200px]:first:border-l-0"
+            style={`--connections-delay: ${180 + index * 90}ms;`}
           >
             {connection.logo ? (
               <div class="flex h-[86px] w-full items-center justify-center">
@@ -65,70 +66,56 @@ const logoScaleIds = new Set(["presvet", "recevet"]);
 </section>
 
 <style is:inline>
-  @keyframes connections-reveal-title {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 16px, 0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes connections-reveal-item {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 14px, 0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  [data-connections-section] .connections-title {
+  [data-connections-section].connections-ready .connections-anim {
     opacity: 0;
-    transform: translate3d(0, 16px, 0);
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--connections-delay, 0ms);
     will-change: opacity, transform;
   }
 
-  [data-connections-section] .connections-reveal .connections-item {
-    opacity: 0;
-    transform: translate3d(0, 14px, 0);
-    will-change: opacity, transform;
-  }
-
-  [data-connections-section].is-visible .connections-title {
-    animation: connections-reveal-title 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  [data-connections-section].is-visible .connections-reveal .connections-item {
-    animation: connections-reveal-item 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  [data-connections-section].connections-ready.is-visible .connections-anim {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [data-connections-section] .connections-title,
-    [data-connections-section] .connections-reveal .connections-item {
-      animation: none !important;
+    [data-connections-section].connections-ready .connections-anim {
       opacity: 1 !important;
       transform: none !important;
+      transition: none !important;
     }
   }
 </style>
 
 <script is:inline>
-  const connectionSections = document.querySelectorAll("[data-connections-section]");
+  (() => {
+    const section = document.querySelector("[data-connections-section]");
 
-  const activateSection = (section) => {
-    section.classList.add("is-visible");
-  };
+    if (!section) {
+      return;
+    }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    connectionSections.forEach(activateSection);
-  } else if ("IntersectionObserver" in window) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      section.classList.add("connections-ready", "is-visible");
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= window.innerHeight * 0.92) {
+      section.classList.add("connections-ready", "is-visible");
+      return;
+    }
+
+    section.classList.add("connections-ready");
+
+    if (!("IntersectionObserver" in window)) {
+      section.classList.add("is-visible");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -136,18 +123,15 @@ const logoScaleIds = new Set(["presvet", "recevet"]);
             return;
           }
 
-          activateSection(entry.target);
-          observer.unobserve(entry.target);
+          section.classList.add("is-visible");
+          observer.disconnect();
         });
       },
       {
-        threshold: 0.22,
-        rootMargin: "0px 0px -6% 0px"
+        threshold: 0.18
       }
     );
 
-    connectionSections.forEach((section) => observer.observe(section));
-  } else {
-    connectionSections.forEach(activateSection);
-  }
+    observer.observe(section);
+  })();
 </script>

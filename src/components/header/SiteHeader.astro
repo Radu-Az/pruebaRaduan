@@ -1,21 +1,59 @@
 ---
-import HeaderNav from "./HeaderNav.vue";
+import { Image } from "astro:assets";
+import HeaderNav from "./HeaderNavStatic.astro";
+import headerLogo from "../../assets/logos/GRlogoOscuro.svg";
 ---
 
 <header
+  data-landing-header
+  data-scrolled="false"
   class="landing-header sticky top-0 relative z-[300] isolate mx-auto flex w-full items-center justify-between gap-[10px] bg-[#efe9d3] px-[14px] pt-[10px] pb-[10px] shadow-none md:px-[20px] md:pb-[11px] min-[1200px]:gap-[16px] min-[1200px]:pl-[26px] min-[1200px]:pr-[0px] min-[1200px]:pt-[14px] min-[1200px]:pb-[14px]"
 >
+  <span class="landing-header-divider pointer-events-none absolute inset-x-0 bottom-0 z-[250] h-px" aria-hidden="true"></span>
+
   <a class="landing-brand shrink-0" href="/" aria-label="Ir al inicio" data-astro-prefetch>
-    <img
-      src="/images/logos/logo-generarecetas.svg"
+    <Image
+      src={headerLogo}
       alt="GeneraRecetas"
       class="block h-auto w-[184px] md:w-[200px] min-[1200px]:w-[230px]"
       width="388"
       height="81"
-      decoding="async"
-      fetchpriority="high"
     />
   </a>
 
-  <HeaderNav client:load />
+  <HeaderNav />
 </header>
+
+<style is:inline>
+  [data-landing-header] .landing-header-divider {
+    background: transparent;
+    box-shadow: none;
+    transition:
+      background-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  [data-landing-header][data-scrolled="true"] .landing-header-divider {
+    background: rgb(47 86 104 / 20%);
+    box-shadow:
+      0 1px 0 rgb(47 86 104 / 18%),
+      0 5px 14px rgb(47 86 104 / 6%);
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const header = document.querySelector("[data-landing-header]");
+
+    if (!header) {
+      return;
+    }
+
+    const syncHeader = () => {
+      header.setAttribute("data-scrolled", window.scrollY > 4 ? "true" : "false");
+    };
+
+    syncHeader();
+    window.addEventListener("scroll", syncHeader, { passive: true });
+  })();
+</script>

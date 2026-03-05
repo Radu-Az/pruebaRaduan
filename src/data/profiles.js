@@ -4,20 +4,20 @@ const createSubprofile = (slug, name) => ({
 });
 
 const defaultServicesIntro =
-  "Tiene acceso a multiples servicios de manera sencilla accediendo a Generarecetas con su usuario y contrasena. Para ello necesitaras estar registrado. A continuacion, los servicios que incluye nuestra aplicacion:";
+  "Tiene acceso a múltiples servicios de manera sencilla accediendo a Generarecetas con su usuario y contraseña. Para ello necesitarás estar registrado. A continuación, los servicios que incluye nuestra aplicación:";
 
 const defaultServices = [
   "e-Receta",
   "Pedidos",
   "Albaranes",
-  "Guias",
+  "Guías",
   "Pesos medios",
   "Censos",
   "Especies",
   "Libro de tratamientos",
   "Libro de visitas",
   "Inspecciones",
-  "Consumo antibiotico",
+  "Consumo antibiótico",
   "Avisos",
   "Asistencia",
   "Etc."
@@ -26,7 +26,7 @@ const defaultServices = [
 const profilePageDetails = {
   ganadero: {
     overview:
-      "Perfil para persona que gestiona un REGA individualmente o de una sola ganaderia o pecuaria.",
+      "Perfil para persona que gestiona un REGA individualmente o de una sola ganadería o pecuaria.",
     stats: [
       {
         label: "REGA",
@@ -43,15 +43,15 @@ const profilePageDetails = {
   },
   "agrupacion-ganadera": {
     overview:
-      "Este perfil es idoneo para personas fisicas o juridicas que obtengan mas de una ganaderia o pecuaria.",
+      "Este perfil es idóneo para personas físicas o jurídicas que obtengan más de una ganadería o pecuaria.",
     stats: [
       {
         label: "REGA",
-        value: "Mas de un REGA."
+        value: "Más de un REGA."
       },
       {
         label: "USUARIOS TIPO (posibles)",
-        value: "Puede tener 2 tipos de usuarios. Un administrador y otro por cada ganaderia."
+        value: "Puede tener 2 tipos de usuarios. Un administrador y otro por cada ganadería."
       }
     ],
     servicesTitle: "Servicios",
@@ -59,9 +59,9 @@ const profilePageDetails = {
     services: defaultServices
   },
   "otros-propietarios": {
-    displayTitle: "Rehala, Coto, Corral domestico, etc.",
+    displayTitle: "Rehala, Coto, Corral doméstico, etc.",
     overview:
-      "Tutor, dueno o cuidador que quiera mantener la trazabilidad de medicamentos para pequenos animales, rehalas, cotos, corral domestico o autoconsumo.",
+      "Tutor, dueño o cuidador que quiera mantener la trazabilidad de medicamentos para pequeños animales, rehalas, cotos, corral doméstico o autoconsumo.",
     stats: [
       {
         label: "REGA",
@@ -78,7 +78,7 @@ const profilePageDetails = {
   },
   veterinario: {
     overview:
-      "Persona que se halla legalmente autorizada para profesar y ejercer la veterinaria. Para poder prescribir a una ganaderia o pecuaria, previamente tiene que estar asignado a ella.",
+      "Persona que se halla legalmente autorizada para profesar y ejercer la veterinaria. Para poder prescribir a una ganadería o pecuaria, previamente tiene que estar asignado a ella.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
@@ -91,7 +91,7 @@ const profilePageDetails = {
   },
   "servicios-veterinarios": {
     overview:
-      "Personas fisicas o juridicas que obtengan mas de un veterinario y quieran administrar todo de manera correcta.",
+      "Personas físicas o jurídicas que obtengan más de un veterinario y quieran administrar todo de manera correcta.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
@@ -104,7 +104,7 @@ const profilePageDetails = {
   },
   farmaceutico: {
     overview:
-      "Persona que se halla legalmente autorizada para procesar y ejercer de farmaceutico con sus labores de supervision y control en la dispensacion de medicamentos veterinarios.",
+      "Persona que se halla legalmente autorizada para procesar y ejercer de farmacéutico con sus labores de supervisión y control en la dispensación de medicamentos veterinarios.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
@@ -114,18 +114,18 @@ const profilePageDetails = {
     servicesTitle: "Servicios",
     servicesIntro: defaultServicesIntro,
     services: [
-      "Supervision e-Recetas",
-      "Validacion de las recetas prescritas y dispensadas",
+      "Supervisión e-Recetas",
+      "Validación de las recetas prescritas y dispensadas",
       "Listado de salidas de medicamentos y piensos"
     ]
   },
   dispensador: {
     overview:
-      "Comercializacion y distribucion de productos y servicios de salud animal.",
+      "Comercialización y distribución de productos y servicios de salud animal.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
-        value: "Cabe la posibilidad de obtener 3 tipos de usuarios diferentes: Administrador (central), tecnico y/o delegacion (almacen)."
+        value: "Cabe la posibilidad de obtener 3 tipos de usuarios diferentes: Administrador (central), técnico y/o delegación (almacén)."
       }
     ],
     servicesTitle: "Servicios",
@@ -137,8 +137,8 @@ const profilePageDetails = {
       "Especies",
       "Listado de salidas de medicamentos y piensos",
       "Informes",
-      "Gestion almacenes",
-      "Integracion en ERP para trazabilidad",
+      "Gestión almacenes",
+      "Integración en ERP para trazabilidad",
       "Avisos",
       "Asistencia",
       "Etc."
@@ -146,11 +146,11 @@ const profilePageDetails = {
   },
   farmacia: {
     overview:
-      "Comercializacion y distribucion de productos, medicamentos veterinarios y servicios de salud animal.",
+      "Comercialización y distribución de productos, medicamentos veterinarios y servicios de salud animal.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
-        value: "Cabe la posibilidad de obtener 2 tipos de usuarios diferentes: Administrador (central) y tecnico."
+        value: "Cabe la posibilidad de obtener 2 tipos de usuarios diferentes: Administrador (central) y técnico."
       }
     ],
     servicesTitle: "Servicios",
@@ -162,8 +162,8 @@ const profilePageDetails = {
       "Especies",
       "Listado de salidas de medicamentos y piensos",
       "Informes",
-      "Gestion almacenes",
-      "Integracion en ERP para trazabilidad",
+      "Gestión almacenes",
+      "Integración en ERP para trazabilidad",
       "Avisos",
       "Asistencia",
       "Etc."
@@ -172,11 +172,11 @@ const profilePageDetails = {
   "entidad-integradora": {
     displayTitle: "Entidad - Integradora",
     overview:
-      "Con y sin comercializacion y distribucion de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios tecnicos y sanitarios que desarrollan a sus socios o integrados.",
+      "Con y sin comercialización y distribución de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios técnicos y sanitarios que desarrollan a sus socios o integrados.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
-        value: "Cabe la posibilidad de obtener 4 tipos de usuarios diferentes: Administrador (central), tecnico, veterinario y ganadero."
+        value: "Cabe la posibilidad de obtener 4 tipos de usuarios diferentes: Administrador (central), técnico, veterinario y ganadero."
       }
     ],
     servicesTitle: "Servicios",
@@ -192,10 +192,10 @@ const profilePageDetails = {
       "Libro de visitas",
       "Listado de salidas de medicamentos y piensos",
       "Informes",
-      "Gestion almacenes",
-      "Integracion en ERP para trazabilidad",
+      "Gestión almacenes",
+      "Integración en ERP para trazabilidad",
       "Inspecciones",
-      "Consumo antibiotico",
+      "Consumo antibiótico",
       "Avisos",
       "Asistencia",
       "Etc."
@@ -203,11 +203,11 @@ const profilePageDetails = {
   },
   cooperativa: {
     overview:
-      "Con y sin comercializacion y distribucion de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios tecnicos y sanitarios que desarrollan a sus socios o integrados.",
+      "Con y sin comercialización y distribución de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios técnicos y sanitarios que desarrollan a sus socios o integrados.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
-        value: "Cabe la posibilidad de obtener 4 tipos de usuarios diferentes: Administrador (central), tecnico, veterinario y ganadero."
+        value: "Cabe la posibilidad de obtener 4 tipos de usuarios diferentes: Administrador (central), técnico, veterinario y ganadero."
       }
     ],
     servicesTitle: "Servicios",
@@ -223,19 +223,19 @@ const profilePageDetails = {
       "Libro de visitas",
       "Listado de salidas de medicamentos y piensos",
       "Informes",
-      "Gestion almacenes",
-      "Integracion en ERP para trazabilidad",
+      "Gestión almacenes",
+      "Integración en ERP para trazabilidad",
       "Inspecciones",
-      "Consumo antibiotico",
+      "Consumo antibiótico",
       "Avisos",
       "Asistencia",
       "Etc."
     ]
   },
   "clinica-veterinaria": {
-    displayTitle: "Clinica veterinaria",
+    displayTitle: "Clínica veterinaria",
     overview:
-      "Con y sin comercializacion y distribucion de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios tecnicos y sanitarios que desarrollan a sus socios o integrados.",
+      "Con y sin comercialización y distribución de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios técnicos y sanitarios que desarrollan a sus socios o integrados.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
@@ -248,26 +248,26 @@ const profilePageDetails = {
       "e-Receta",
       "Pedidos",
       "Albaranes",
-      "Guias",
+      "Guías",
       "Pesos medios",
       "Censos",
       "Especies",
       "Libro de tratamientos",
       "Inspecciones",
-      "Consumo antibiotico",
+      "Consumo antibiótico",
       "Avisos",
       "Asistencia",
       "Etc."
     ]
   },
   fabrica: {
-    displayTitle: "Fabrica",
+    displayTitle: "Fábrica",
     overview:
-      "Fabricantes y distribuidores de piensos medicamentosos o blancos. Incluye los servicios tecnicos y sanitarios que desarrollan a sus socios, entidades o integrados.",
+      "Fabricantes y distribuidores de piensos medicamentosos o blancos. Incluye los servicios técnicos y sanitarios que desarrollan a sus socios, entidades o integrados.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
-        value: "Cabe la posibilidad de obtener 3 tipos de usuarios diferentes: Administrador (central), tecnico y bascula."
+        value: "Cabe la posibilidad de obtener 3 tipos de usuarios diferentes: Administrador (central), técnico y báscula."
       }
     ],
     servicesTitle: "Servicios",
@@ -282,13 +282,13 @@ const profilePageDetails = {
       "Libro de tratamientos",
       "Libro de visitas",
       "Listado de salidas de medicamentos y piensos",
-      "Balance de Nitrogeno",
-      "Huella carbono de la fabrica pienso",
+      "Balance de Nitrógeno",
+      "Huella carbono de la fábrica pienso",
       "Informes",
-      "Gestion almacenes",
-      "Integracion en ERP para trazabilidad",
+      "Gestión almacenes",
+      "Integración en ERP para trazabilidad",
       "Inspecciones",
-      "Consumo antibiotico",
+      "Consumo antibiótico",
       "Avisos",
       "Asistencia",
       "Etc."
@@ -297,7 +297,7 @@ const profilePageDetails = {
   laboratorio: {
     displayTitle: "Laboratorio",
     overview:
-      "Con y sin comercializacion y distribucion de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios tecnicos y sanitarios que desarrollan a sus socios o integrados.",
+      "Con y sin comercialización y distribución de productos, medicamentos veterinarios y servicios de salud animal. Incluye los servicios técnicos y sanitarios que desarrollan a sus socios o integrados.",
     stats: [
       {
         label: "USUARIOS TIPO (posibles)",
@@ -317,10 +317,10 @@ const profilePageDetails = {
       "Libro de visitas",
       "Listado de salidas de medicamentos y piensos",
       "Informes",
-      "Gestion almacenes",
-      "Integracion en ERP para trazabilidad",
+      "Gestión almacenes",
+      "Integración en ERP para trazabilidad",
       "Inspecciones",
-      "Consumo antibiotico",
+      "Consumo antibiótico",
       "Avisos",
       "Asistencia",
       "Etc."
@@ -348,7 +348,7 @@ export const profiles = [
     subprofiles: [
       createSubprofile("veterinario", "Veterinario/a"),
       createSubprofile("servicios-veterinarios", "Servicios Veterinarios"),
-      createSubprofile("farmaceutico", "Farmaceutico")
+      createSubprofile("farmaceutico", "Farmacéutico")
     ]
   },
   {
@@ -373,14 +373,14 @@ export const profiles = [
   },
   {
     id: "clinica-veterinaria",
-    name: "Clinica veterinaria",
+    name: "Clínica veterinaria",
     slug: "clinica-veterinaria",
     image: "/images/PerfilClinicaVet.png",
     subprofiles: []
   },
   {
     id: "fabrica",
-    name: "Fabrica",
+    name: "Fábrica",
     slug: "fabrica",
     image: "/images/PerfilFabrica.png",
     subprofiles: []

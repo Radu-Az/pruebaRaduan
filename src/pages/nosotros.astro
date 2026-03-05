@@ -1,0 +1,64 @@
+---
+import SiteHeader from "../components/header/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Nosotros | GeneraRecetas"
+  description="Conoce al equipo de Ntecweb y su trayectoria en el desarrollo de software veterinario y receta electronica."
+  canonical="/nosotros"
+>
+  <SiteHeader />
+
+  <main class="px-[14px] pb-[48px] pt-0 md:px-[20px] md:pb-[72px]">
+    <section class="mx-auto w-full max-w-[1200px] py-[20px] md:py-[34px]">
+      <div class="grid items-start gap-[22px] min-[980px]:grid-cols-[minmax(320px,460px)_minmax(0,1fr)] min-[980px]:items-center min-[1200px]:gap-[38px]">
+        <div class="mx-auto w-full max-w-[320px] reveal-up min-[980px]:max-w-none min-[980px]:self-center">
+          <img
+            src="/images/Nosotros.png"
+            alt="Equipo de Ntecweb"
+            class="mx-auto block h-auto w-full"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="min-w-0 py-[6px] reveal-up reveal-delay-1 md:py-[10px]">
+          <p class="font-space text-[0.95rem] font-[600] uppercase tracking-[0.18em] text-gr-gold md:text-[1.02rem]">
+            Nosotros
+          </p>
+
+          <h1 class="mt-[10px] max-w-[760px] font-space text-[2rem] font-[700] leading-[1.06] text-gr-blue md:text-[3rem]">
+            &iquest;Qui&eacute;nes somos?
+          </h1>
+
+          <div class="mt-[16px] h-px w-full max-w-[780px] bg-gr-border/28"></div>
+
+          <div class="mt-[18px] max-w-[780px] space-y-[16px] text-[1rem] leading-[1.78] text-gr-blue/84 md:text-[1.05rem] md:leading-[1.86]">
+            <p>
+              En Ntecweb somos un grupo de trabajo joven y dinámico, con una amplia trayectoria en el sector
+              tecnológico, dedicado al desarrollo, implantación y mantenimiento de aplicaciones web para
+              diferentes sectores, sobre todo enfocados al desarrollo de softwares de gestión de pequeño y
+              gran animal, ligados al uso de la receta veterinaria electrónica (somos pioneros en España),
+              como pueden ser veterinarios, explotaciones ganaderas, centros dispensadores, fábricas de pienso,
+              integradoras y un largo etcétera, y siempre adaptados a los continuos cambios de legislación.
+            </p>
+
+            <p>
+              Contamos con aplicaciones para la gestión integral de la receta electrónica y su
+              trazabilidad, gestión para clínicas veterinarias, aplicaciones de seguimiento de pedidos a
+              proveedor, Plan Sanitario Integral y más. Todo esto va acompañado de un completo servicio de
+              atención al cliente para resolver dudas y recoger sugerencias que puedan surgir en el uso diario de
+              nuestras aplicaciones.
+            </p>
+
+            <p>
+              Nuestro equipo está en continua formación y actualización con el fin de prestar el
+              mejor servicio a nuestros clientes, donde cliente y empresa forman parte de un mismo equipo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

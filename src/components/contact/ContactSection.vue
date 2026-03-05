@@ -47,7 +47,7 @@ function handleSubmit() {
 
     <div class="mx-auto w-full max-w-[1200px]">
       <section
-        class="relative overflow-hidden rounded-[28px] border border-gr-border/20 shadow-[0_28px_70px_rgba(20,57,73,0.18)]"
+        class="relative overflow-hidden rounded-[28px] border border-gr-border/20 shadow-[0_28px_70px_rgba(20,57,73,0.18)] reveal-up"
         aria-labelledby="contact-title"
       >
         <span class="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/18" aria-hidden="true"></span>
@@ -191,7 +191,7 @@ function handleSubmit() {
       </section>
 
       <section
-        class="mt-[18px] overflow-hidden rounded-[28px] border border-gr-border/18 bg-white shadow-[0_20px_44px_rgba(20,57,73,0.1)] md:mt-[22px]"
+        class="mt-[18px] overflow-hidden rounded-[28px] border border-gr-border/18 bg-white shadow-[0_20px_44px_rgba(20,57,73,0.1)] reveal-up reveal-delay-1 md:mt-[22px]"
         aria-label="Mapa de ubicacion"
       >
         <iframe

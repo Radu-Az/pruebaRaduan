@@ -1,0 +1,151 @@
+---
+import SiteHeader from "../components/header/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Soporte | GeneraRecetas"
+  description="Consulta soporte, preguntas frecuentes y documentacion general de GeneraRecetas."
+  canonical="/soporte"
+>
+  <SiteHeader />
+
+  <main class="bg-white px-[14px] pb-[48px] pt-0 md:px-[20px] md:pb-[72px]">
+    <section class="mx-auto w-full max-w-[1200px] py-[20px] md:py-[34px]">
+      <div class="max-w-[760px] reveal-up">
+          <p class="font-space text-[0.95rem] font-[600] uppercase tracking-[0.18em] text-gr-gold md:text-[1rem]">
+            Soporte
+          </p>
+          <h1 class="mt-[10px] font-space text-[2rem] font-[700] leading-[1.04] text-gr-blue md:text-[3.15rem]">
+            Soporte, FAQs y documentacion
+          </h1>
+          <p class="mt-[16px] text-[1rem] leading-[1.75] text-gr-blue/82 md:text-[1.06rem]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, sapien id bibendum feugiat, est
+            nibh posuere nibh, vitae efficitur lectus velit non sem. Sed vitae sem ut orci suscipit lacinia.
+          </p>
+      </div>
+
+      <div class="mt-[24px] grid gap-[18px] reveal-up reveal-delay-1 md:mt-[30px] min-[980px]:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] min-[1200px]:gap-[24px]">
+        <section class="min-w-0 rounded-[12px] border border-gr-border/38 bg-white px-[16px] py-[16px] shadow-[0_14px_28px_rgba(47,86,104,0.1)] md:px-[20px] md:py-[20px]">
+            <h2 class="font-space text-[1.38rem] font-[700] leading-[1.08] text-gr-blue md:text-[1.7rem]">
+              Soporte
+            </h2>
+            <div class="mt-[12px] space-y-[12px] text-[0.98rem] leading-[1.76] text-gr-blue/78 md:text-[1.02rem]">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus, lacus nec tempor
+                facilisis, urna lectus tempus eros, ut faucibus dui sem vitae nunc. Donec non luctus velit.
+              </p>
+              <p>
+                Nulla facilisi. Praesent gravida, augue sed suscipit tincidunt, lorem justo blandit ipsum, ut
+                dignissim tortor arcu at velit. Curabitur vitae diam non magna efficitur commodo.
+              </p>
+            </div>
+        </section>
+
+        <section class="min-w-0 rounded-[12px] border border-gr-border/38 bg-white px-[16px] py-[16px] shadow-[0_14px_28px_rgba(47,86,104,0.1)] md:px-[20px] md:py-[20px]">
+            <h2 class="font-space text-[1.38rem] font-[700] leading-[1.08] text-gr-blue md:text-[1.7rem]">
+              FAQs
+            </h2>
+            <div class="mt-[12px] space-y-[10px]">
+              <details class="border-b border-gr-border/16 pb-[12px]" open>
+                <summary class="cursor-pointer list-none font-space text-[1rem] font-[600] text-gr-blue">
+                  Lorem ipsum dolor sit amet?
+                </summary>
+                <p class="mt-[8px] text-[0.94rem] leading-[1.7] text-gr-blue/76">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris condimentum, turpis in suscipit
+                  tincidunt, mauris lorem hendrerit mi, sed iaculis nisl arcu in erat.
+                </p>
+              </details>
+
+              <details class="border-b border-gr-border/16 pb-[12px]">
+                <summary class="cursor-pointer list-none font-space text-[1rem] font-[600] text-gr-blue">
+                  Integer posuere sapien non orci?
+                </summary>
+                <p class="mt-[8px] text-[0.94rem] leading-[1.7] text-gr-blue/76">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus, justo vel posuere luctus,
+                  dui elit congue erat, vitae volutpat neque elit at est.
+                </p>
+              </details>
+
+              <details class="border-b border-gr-border/16 pb-[12px]">
+                <summary class="cursor-pointer list-none font-space text-[1rem] font-[600] text-gr-blue">
+                  Curabitur vitae diam non magna?
+                </summary>
+                <p class="mt-[8px] text-[0.94rem] leading-[1.7] text-gr-blue/76">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. In hac habitasse
+                  platea dictumst. Ut nec finibus erat.
+                </p>
+              </details>
+            </div>
+        </section>
+      </div>
+
+      <section class="mt-[24px] rounded-[12px] border border-gr-border/38 bg-white px-[16px] py-[16px] shadow-[0_16px_30px_rgba(47,86,104,0.1)] reveal-up reveal-delay-2 md:mt-[30px] md:px-[20px] md:py-[20px]">
+          <div class="flex flex-col gap-[14px] md:flex-row md:items-end md:justify-between">
+            <div class="max-w-[720px]">
+              <h2 class="font-space text-[1.38rem] font-[700] leading-[1.08] text-gr-blue md:text-[1.7rem]">
+                Documentacion
+              </h2>
+              <p class="mt-[10px] text-[0.96rem] leading-[1.72] text-gr-blue/76 md:text-[1rem]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar, justo at eleifend luctus, nunc
+                turpis faucibus risus, sed viverra mauris mauris vel orci.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-[16px] grid gap-[14px] md:grid-cols-3 md:gap-[18px]">
+            <article class="border-t border-gr-border/16 pt-[12px] md:border-t-0 md:border-l md:pt-0 md:pl-[16px]">
+              <p class="text-[0.76rem] font-[700] uppercase tracking-[0.16em] text-gr-gold">Guia</p>
+              <h3 class="mt-[8px] font-space text-[1.08rem] font-[700] leading-[1.16] text-gr-blue">
+                Lorem ipsum dolor sit amet
+              </h3>
+              <p class="mt-[8px] text-[0.9rem] leading-[1.68] text-gr-blue/74">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat diam non sem mattis, vitae
+                posuere neque lobortis.
+              </p>
+            </article>
+
+            <article class="border-t border-gr-border/16 pt-[12px] md:border-t-0 md:border-l md:pt-0 md:pl-[16px]">
+              <p class="text-[0.76rem] font-[700] uppercase tracking-[0.16em] text-gr-gold">Manual</p>
+              <h3 class="mt-[8px] font-space text-[1.08rem] font-[700] leading-[1.16] text-gr-blue">
+                Pellentesque luctus lacus nec
+              </h3>
+              <p class="mt-[8px] text-[0.9rem] leading-[1.68] text-gr-blue/74">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Morbi auctor tortor ut
+                justo lacinia, in commodo velit euismod.
+              </p>
+            </article>
+
+            <article class="border-t border-gr-border/16 pt-[12px] md:border-t-0 md:border-l md:pt-0 md:pl-[16px]">
+              <p class="text-[0.76rem] font-[700] uppercase tracking-[0.16em] text-gr-gold">Referencia</p>
+              <h3 class="mt-[8px] font-space text-[1.08rem] font-[700] leading-[1.16] text-gr-blue">
+                Curabitur vitae diam non magna
+              </h3>
+              <p class="mt-[8px] text-[0.9rem] leading-[1.68] text-gr-blue/74">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum blandit ligula vitae dui feugiat,
+                ac malesuada mauris luctus.
+              </p>
+            </article>
+          </div>
+      </section>
+
+      <section class="mt-[20px] rounded-[12px] border border-gr-border/38 bg-white px-[18px] py-[18px] shadow-[0_14px_28px_rgba(47,86,104,0.08)] reveal-up reveal-delay-3 md:mt-[24px] md:flex md:items-center md:justify-between md:gap-[18px] md:px-[22px]">
+          <div class="max-w-[620px]">
+            <h2 class="font-space text-[1.26rem] font-[700] leading-[1.08] text-gr-blue md:text-[1.52rem]">
+              &iquest;No encuentras lo que buscas?
+            </h2>
+            <p class="mt-[8px] text-[0.96rem] leading-[1.7] text-gr-blue/76">
+              Escr&iacute;benos y te ayudaremos a resolverlo.
+            </p>
+          </div>
+
+          <a
+            href="/contacto"
+            class="mt-[14px] inline-flex min-h-[52px] items-center justify-center rounded-[12px] bg-gr-gold px-[22px] py-[12px] font-space text-[0.96rem] font-[600] text-white shadow-[0_14px_28px_-22px_rgba(186,161,71,0.78)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-[1px] hover:shadow-[0_18px_30px_-22px_rgba(186,161,71,0.9)] hover:brightness-[1.02] md:mt-0"
+          >
+            Cont&aacute;ctanos
+          </a>
+      </section>
+    </section>
+  </main>
+</BaseLayout>

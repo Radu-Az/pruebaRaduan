@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: optional;
+}
+
 @theme {
   --color-gr-bg: #f5f6f4;
   --color-gr-blue: #2f5668;
@@ -95,7 +111,7 @@
     font-weight: 500;
   }
 
-  .reveal-up {
+  html.has-scroll-reveal .reveal-up {
     opacity: 0;
     transform: translate3d(0, 18px, 0);
     transition:
@@ -116,8 +132,8 @@
     transition-delay: 320ms;
   }
 
-  .is-visible .reveal-up,
-  .reveal-up.is-visible {
+  html.has-scroll-reveal .is-visible .reveal-up,
+  html.has-scroll-reveal .reveal-up.is-visible {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -125,7 +141,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   @layer components {
-    .reveal-up {
+    html.has-scroll-reveal .reveal-up {
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;

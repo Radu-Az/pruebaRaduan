@@ -1,0 +1,580 @@
+---
+import {
+  defaultLanguage,
+  loginLink,
+  navItems,
+  pharmacyItems,
+  registerLink,
+  resourcesItems
+} from "../../data/site-navigation";
+import ResourceIcon from "./ResourceIcon.astro";
+
+const profilesNavItem = navItems.find((item) => item.id === "profiles");
+const pharmacyNavItem = navItems.find((item) => item.id === "pharmacy");
+const secondaryNavItems = navItems.filter((item) => item.id !== "profiles" && item.id !== "pharmacy");
+const isInternalLink = (href) => typeof href === "string" && href.startsWith("/") && !href.startsWith("//");
+const isRealLink = (href) => typeof href === "string" && href !== "#";
+const languageOptions = [
+  { value: "es", shortLabel: "ES", label: "España" },
+  { value: "en", shortLabel: "EN", label: "English" },
+  { value: "fr", shortLabel: "FR", label: "Français" },
+  { value: "eu", shortLabel: "EU", label: "Euskera" },
+  { value: "ca", shortLabel: "CA", label: "Català" },
+  { value: "ga", shortLabel: "GA", label: "Galego" },
+  { value: "pt", shortLabel: "PT", label: "Português" }
+];
+---
+
+<div class="hidden min-[1200px]:relative min-[1200px]:z-[330] min-[1200px]:ml-auto min-[1200px]:flex min-[1200px]:translate-x-[10px] min-[1200px]:items-center min-[1200px]:gap-[34px]">
+  <nav class="flex items-center gap-[32px] text-[1.12rem] leading-none text-gr-blue" aria-label="Principal">
+    {profilesNavItem && (
+      <a
+        href={profilesNavItem.href}
+        data-astro-prefetch={isInternalLink(profilesNavItem.href) ? true : undefined}
+        class="relative inline-flex font-roboto after:absolute after:-bottom-[6px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-gr-blue after:transition-transform after:duration-200 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
+      >
+        {profilesNavItem.label}
+      </a>
+    )}
+
+    <div class="group/desktop-resources relative z-[340]">
+      <button type="button" class="inline-flex items-center gap-[6px] font-roboto">
+        <span>Recursos</span>
+        <span
+          class="h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-gr-blue transition-transform duration-200 ease-out group-hover/desktop-resources:rotate-180 group-focus-within/desktop-resources:rotate-180"
+          aria-hidden="true"
+        ></span>
+      </button>
+      <span class="absolute -bottom-[6px] left-0 h-[2px] w-full origin-left scale-x-0 bg-gr-blue transition-transform duration-200 ease-out group-hover/desktop-resources:scale-x-100 group-focus-within/desktop-resources:scale-x-100"></span>
+
+      <div class="pointer-events-none absolute left-0 top-[calc(100%+12px)] z-[360] w-[314px] origin-top-left translate-y-[8px] rounded-[12px] border border-gr-border bg-gr-bg p-[10px] opacity-0 shadow-[0_12px_24px_rgba(47,86,104,0.14)] transition-[opacity,transform] duration-[430ms] ease-[cubic-bezier(0.4,0,0.2,1)] before:absolute before:-top-[12px] before:left-0 before:right-0 before:h-[12px] before:content-[''] group-hover/desktop-resources:pointer-events-auto group-hover/desktop-resources:translate-y-0 group-hover/desktop-resources:opacity-100 group-focus-within/desktop-resources:pointer-events-auto group-focus-within/desktop-resources:translate-y-0 group-focus-within/desktop-resources:opacity-100">
+        {resourcesItems.map((item) => (
+          <a
+            href={item.href}
+            data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
+            class="group/resource-card mb-[8px] flex items-start gap-[10px] rounded-[10px] border border-gr-border bg-white/80 px-[10px] py-[9px] text-left transition-[border-color,box-shadow,background-color] duration-200 last:mb-0 hover:border-gr-gold hover:bg-white hover:shadow-[0_6px_14px_rgba(47,86,104,0.12)]"
+          >
+            <span class="inline-flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[8px] border border-gr-border bg-gr-bg text-gr-blue">
+              <ResourceIcon name={item.icon} class="h-[18px] w-[18px]" />
+            </span>
+            <span class="block">
+              <span class="block text-[0.98rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+              <span class="mt-[3px] block text-[0.8rem] leading-[1.2] text-gr-muted">{item.subtitle}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    {secondaryNavItems.map((item) => (
+      <a
+        href={item.href}
+        data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
+        class="relative inline-flex font-roboto after:absolute after:-bottom-[6px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-gr-blue after:transition-transform after:duration-200 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
+      >
+        {item.label}
+      </a>
+    ))}
+
+    {pharmacyNavItem && (
+      <div class="group/desktop-pharmacy relative z-[340]">
+        <button type="button" class="inline-flex items-center gap-[6px] font-roboto">
+          <span>{pharmacyNavItem.label}</span>
+          <span
+            class="h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-gr-blue transition-transform duration-200 ease-out group-hover/desktop-pharmacy:rotate-180 group-focus-within/desktop-pharmacy:rotate-180"
+            aria-hidden="true"
+          ></span>
+        </button>
+        <span class="absolute -bottom-[6px] left-0 h-[2px] w-full origin-left scale-x-0 bg-gr-blue transition-transform duration-200 ease-out group-hover/desktop-pharmacy:scale-x-100 group-focus-within/desktop-pharmacy:scale-x-100"></span>
+
+        <div class="pointer-events-none absolute left-0 top-[calc(100%+12px)] z-[360] w-[248px] origin-top-left translate-y-[8px] rounded-[12px] border border-gr-border bg-gr-bg p-[10px] opacity-0 shadow-[0_12px_24px_rgba(47,86,104,0.14)] transition-[opacity,transform] duration-[430ms] ease-[cubic-bezier(0.4,0,0.2,1)] before:absolute before:-top-[12px] before:left-0 before:right-0 before:h-[12px] before:content-[''] group-hover/desktop-pharmacy:pointer-events-auto group-hover/desktop-pharmacy:translate-y-0 group-hover/desktop-pharmacy:opacity-100 group-focus-within/desktop-pharmacy:pointer-events-auto group-focus-within/desktop-pharmacy:translate-y-0 group-focus-within/desktop-pharmacy:opacity-100">
+          {pharmacyItems.map((item) => (
+            isRealLink(item.href) ? (
+              <a
+                href={item.href}
+                data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
+                class="group/resource-card mb-[8px] flex items-center gap-[10px] rounded-[10px] border border-gr-border bg-white/80 px-[10px] py-[10px] text-left transition-[border-color,box-shadow,background-color] duration-200 last:mb-0 hover:border-gr-gold hover:bg-white hover:shadow-[0_6px_14px_rgba(47,86,104,0.12)]"
+              >
+                <span class="inline-flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[8px] border border-gr-border bg-gr-bg text-gr-blue">
+                  <ResourceIcon name={item.icon} class="h-[18px] w-[18px]" />
+                </span>
+                <span class="block text-[0.98rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+              </a>
+            ) : (
+              <span class="mb-[8px] flex items-center gap-[10px] rounded-[10px] border border-gr-border bg-white/80 px-[10px] py-[10px] text-left last:mb-0">
+                <span class="inline-flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[8px] border border-gr-border bg-gr-bg text-gr-blue">
+                  <ResourceIcon name={item.icon} class="h-[18px] w-[18px]" />
+                </span>
+                <span class="block text-[0.98rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+              </span>
+            )
+          ))}
+        </div>
+      </div>
+    )}
+  </nav>
+
+  <div class="flex items-center gap-[10px]">
+    <div class="flex items-center gap-[10px]">
+      {isRealLink(loginLink.href) ? (
+        <a
+          class="inline-flex min-h-[38px] items-center justify-center gap-[8px] rounded-full bg-gr-gold px-[11px] py-[7px] pr-[20px] text-[1.12rem] font-medium leading-none whitespace-nowrap text-white transition-[box-shadow,filter] duration-300 ease-out hover:shadow-[0_8px_18px_rgba(186,161,71,0.28)] hover:brightness-[1.03] focus-visible:shadow-[0_8px_18px_rgba(186,161,71,0.28)] focus-visible:brightness-[1.03]"
+          href={loginLink.href}
+        >
+          <svg class="h-[20px] w-[20px] fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.25"></circle>
+            <path d="M6.75 19c.75-2.5 2.7-3.95 5.25-3.95S16.5 16.5 17.25 19"></path>
+          </svg>
+          <span>{loginLink.label}</span>
+        </a>
+      ) : (
+        <button
+          type="button"
+          class="inline-flex min-h-[38px] cursor-pointer items-center justify-center gap-[8px] rounded-full bg-gr-gold px-[11px] py-[7px] pr-[20px] text-[1.12rem] font-medium leading-none whitespace-nowrap text-white transition-[box-shadow,filter] duration-300 ease-out hover:shadow-[0_8px_18px_rgba(186,161,71,0.28)] hover:brightness-[1.03] focus-visible:shadow-[0_8px_18px_rgba(186,161,71,0.28)] focus-visible:brightness-[1.03]"
+          aria-label={loginLink.label}
+        >
+          <svg class="h-[20px] w-[20px] fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.25"></circle>
+            <path d="M6.75 19c.75-2.5 2.7-3.95 5.25-3.95S16.5 16.5 17.25 19"></path>
+          </svg>
+          <span>{loginLink.label}</span>
+        </button>
+      )}
+
+      {isRealLink(registerLink.href) ? (
+        <a
+          class="inline-flex min-h-[38px] items-center justify-center rounded-full border border-gr-gold bg-transparent px-[14px] py-[7px] text-[1.12rem] font-medium leading-none whitespace-nowrap text-gr-gold transition-[box-shadow,background-color,color] duration-300 ease-out hover:bg-gr-gold hover:text-white hover:shadow-[0_8px_18px_rgba(186,161,71,0.24)] focus-visible:bg-gr-gold focus-visible:text-white focus-visible:shadow-[0_8px_18px_rgba(186,161,71,0.24)]"
+          href={registerLink.href}
+        >
+          {registerLink.label}
+        </a>
+      ) : (
+        <button
+          type="button"
+          class="inline-flex min-h-[38px] cursor-pointer items-center justify-center rounded-full border border-gr-gold bg-transparent px-[14px] py-[7px] text-[1.12rem] font-medium leading-none whitespace-nowrap text-gr-gold transition-[box-shadow,background-color,color] duration-300 ease-out hover:bg-gr-gold hover:text-white hover:shadow-[0_8px_18px_rgba(186,161,71,0.24)] focus-visible:bg-gr-gold focus-visible:text-white focus-visible:shadow-[0_8px_18px_rgba(186,161,71,0.24)]"
+          aria-label={registerLink.label}
+        >
+          {registerLink.label}
+        </button>
+      )}
+    </div>
+
+    <details class="language-switcher group/language relative" data-language-switcher>
+      <summary
+        class="inline-flex min-h-[36px] min-w-[70px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-gr-border/28 bg-white px-[8px] py-[6px] text-black shadow-[0_6px_14px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-gr-border/40 hover:shadow-[0_8px_16px_rgba(47,86,104,0.08)] focus-visible:border-gr-border/40 focus-visible:shadow-[0_8px_16px_rgba(47,86,104,0.08)]"
+        aria-label="Seleccionar idioma"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="h-[13px] w-[13px] shrink-0 fill-none stroke-current stroke-[1.8] text-black"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="8.5"></circle>
+          <path d="M3.5 12h17"></path>
+          <path d="M12 3.5c2.6 2.2 2.6 14.8 0 17"></path>
+          <path d="M12 3.5c-2.6 2.2-2.6 14.8 0 17"></path>
+        </svg>
+        <span class="font-space text-[0.8rem] font-[700] tracking-[0.12em] text-black" data-language-current>
+          {languageOptions.find((language) => language.value === defaultLanguage)?.shortLabel ?? defaultLanguage.toUpperCase()}
+        </span>
+        <span class="pointer-events-none h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-black transition-transform duration-200 ease-out group-open/language:rotate-180" aria-hidden="true"></span>
+      </summary>
+
+      <div class="absolute right-0 top-[calc(100%+8px)] z-[380] w-[78px] rounded-[8px] border border-gr-border/18 bg-white p-[4px] shadow-[0_12px_22px_rgba(47,86,104,0.1)]">
+        <div class="grid gap-[4px]">
+          {languageOptions.map((language) => (
+            <button
+              type="button"
+              class="language-option inline-flex min-h-[30px] w-full items-center justify-center rounded-[4px] px-[4px] py-[4px] text-center transition-[background-color] duration-200 hover:bg-black/[0.04]"
+              data-language-option={language.value}
+            >
+              <span class="font-space text-[0.76rem] font-[700] tracking-[0.12em] text-black">
+                {language.shortLabel}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="relative z-[340] ml-auto flex shrink-0 items-center min-[1200px]:hidden">
+  <input id="mobile-menu-toggle" type="checkbox" class="mobile-menu-toggle peer sr-only" />
+
+  <label
+    for="mobile-menu-toggle"
+    class="inline-flex h-[40px] w-[40px] cursor-pointer flex-col items-center justify-center gap-[5px] border-0 bg-transparent p-0"
+    aria-label="Abrir menu principal"
+  >
+    <span class="block h-[2px] w-[24px] rounded-[3px] bg-gr-blue"></span>
+    <span class="block h-[2px] w-[24px] rounded-[3px] bg-gr-blue"></span>
+    <span class="block h-[2px] w-[24px] rounded-[3px] bg-gr-blue"></span>
+  </label>
+
+  <div class="mobile-menu-shell pointer-events-none fixed inset-0 z-[330] opacity-0 transition-opacity duration-300 peer-checked:pointer-events-auto peer-checked:opacity-100">
+    <label for="mobile-menu-toggle" class="absolute inset-0 block bg-[rgba(47,86,104,0.14)]" aria-label="Cerrar menu principal"></label>
+
+    <aside class="mobile-menu-panel absolute inset-0 flex h-dvh min-h-dvh flex-col items-center overflow-y-auto bg-gr-bg px-[18px] pb-[20px] pt-[18px] shadow-[-6px_0_26px_rgba(47,86,104,0.14)] outline-none md:px-[22px] md:pb-[24px] md:pt-[20px]">
+      <label
+        for="mobile-menu-toggle"
+        class="absolute right-[14px] top-[14px] z-[350] inline-flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full text-gr-blue md:right-[18px] md:top-[16px]"
+        aria-label="Cerrar menu principal"
+      >
+        <svg viewBox="0 0 24 24" class="pointer-events-none h-[20px] w-[20px] fill-none stroke-current stroke-[2.2]" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>
+        </svg>
+      </label>
+
+      <div class="mb-[84px] mt-[90px] flex w-full max-w-[460px] items-center justify-center md:mb-[96px] md:mt-[108px]">
+        <a href="/" class="inline-flex items-center justify-center" aria-label="Ir al inicio" data-astro-prefetch>
+          <img
+            src="/images/logos/logo-generarecetas-icon.svg"
+            alt="GeneraRecetas"
+            class="block h-auto w-[58px] md:w-[64px]"
+            width="128"
+            height="128"
+            decoding="async"
+          />
+        </a>
+      </div>
+
+      <div class="mb-[20px] flex w-full max-w-[460px] items-center justify-center">
+        <details class="language-switcher group/language relative" data-language-switcher>
+          <summary
+            class="inline-flex min-h-[40px] min-w-[74px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-gr-border/28 bg-white px-[9px] py-[6px] text-black shadow-[0_8px_16px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-gr-border/40 hover:shadow-[0_10px_18px_rgba(47,86,104,0.08)] focus-visible:border-gr-border/40 focus-visible:shadow-[0_10px_18px_rgba(47,86,104,0.08)]"
+            aria-label="Seleccionar idioma"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-[13px] w-[13px] shrink-0 fill-none stroke-current stroke-[1.8] text-black"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="8.5"></circle>
+              <path d="M3.5 12h17"></path>
+              <path d="M12 3.5c2.6 2.2 2.6 14.8 0 17"></path>
+              <path d="M12 3.5c-2.6 2.2-2.6 14.8 0 17"></path>
+            </svg>
+            <span class="font-space text-[0.82rem] font-[700] tracking-[0.12em] text-black" data-language-current>
+              {languageOptions.find((language) => language.value === defaultLanguage)?.shortLabel ?? defaultLanguage.toUpperCase()}
+            </span>
+            <span class="pointer-events-none h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-black transition-transform duration-200 ease-out group-open/language:rotate-180" aria-hidden="true"></span>
+          </summary>
+
+          <div class="absolute left-1/2 top-[calc(100%+8px)] z-[380] w-[82px] -translate-x-1/2 rounded-[8px] border border-gr-border/18 bg-white p-[4px] shadow-[0_12px_22px_rgba(47,86,104,0.1)]">
+            <div class="grid gap-[4px]">
+              {languageOptions.map((language) => (
+                <button
+                  type="button"
+                  class="language-option inline-flex min-h-[30px] w-full items-center justify-center rounded-[4px] px-[4px] py-[4px] text-center transition-[background-color] duration-200 hover:bg-black/[0.04]"
+                  data-language-option={language.value}
+                >
+                  <span class="font-space text-[0.76rem] font-[700] tracking-[0.12em] text-black">
+                    {language.shortLabel}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="flex w-full max-w-[460px] flex-col items-center py-4">
+        <div class="w-full divide-y divide-gr-border/55">
+          {profilesNavItem && (
+            <a
+              class="inline-flex w-full justify-center px-[8px] py-[12px] text-center text-[1.42rem] font-medium leading-[1.2] tracking-[0.01em] text-gr-blue transition-colors duration-200 hover:text-gr-gold md:text-[1.5rem]"
+              href={profilesNavItem.href}
+              data-astro-prefetch={isInternalLink(profilesNavItem.href) ? true : undefined}
+            >
+              {profilesNavItem.label}
+            </a>
+          )}
+
+          <details class="mobile-nav-details w-full">
+            <summary class="inline-flex w-full cursor-pointer list-none items-center justify-center gap-[8px] px-[8px] py-[12px] text-center text-[1.42rem] font-medium leading-[1.2] tracking-[0.01em] text-gr-blue transition-colors duration-200 hover:text-gr-gold md:text-[1.5rem]">
+              <span>Recursos</span>
+              <span class="mobile-menu-chevron h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-gr-blue transition-transform duration-200 ease-out" aria-hidden="true"></span>
+            </summary>
+
+            <div class="overflow-hidden">
+              <div class="mx-auto w-full max-w-[360px] px-[4px] py-[12px]">
+                <div class="relative pl-[18px]">
+                  <span class="pointer-events-none absolute bottom-[8px] left-[6px] top-[8px] w-px bg-gradient-to-b from-gr-gold/20 via-gr-gold/70 to-gr-gold/20" aria-hidden="true"></span>
+                  {resourcesItems.map((item) => (
+                    <a
+                      class="group/resource-mobile-card relative flex w-full items-start gap-[10px] py-[11px] pr-[2px] text-left transition-colors duration-200 hover:text-gr-gold"
+                      href={item.href}
+                      data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
+                    >
+                      <span class="absolute -left-[16px] top-[18px] h-[7px] w-[7px] rounded-full bg-gr-gold/80 shadow-[0_0_0_3px_rgba(245,246,244,0.95)]" aria-hidden="true"></span>
+                      <span class="inline-flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[7px] bg-gr-blue/[0.08] text-gr-blue">
+                        <ResourceIcon name={item.icon} class="h-[17px] w-[17px]" />
+                      </span>
+                      <span class="block pt-[1px]">
+                        <span class="block text-[1.02rem] font-medium leading-[1.15] text-gr-blue transition-colors duration-200 group-hover/resource-mobile-card:text-gr-gold">{item.title}</span>
+                        <span class="mt-[3px] block text-[0.82rem] leading-[1.2] text-gr-muted">{item.subtitle}</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </details>
+
+          {secondaryNavItems.map((item) => (
+            <a
+              class="inline-flex w-full justify-center px-[8px] py-[12px] text-center text-[1.42rem] font-medium leading-[1.2] tracking-[0.01em] text-gr-blue transition-colors duration-200 hover:text-gr-gold md:text-[1.5rem]"
+              href={item.href}
+              data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+
+          {pharmacyNavItem && (
+            <details class="mobile-nav-details w-full">
+              <summary class="inline-flex w-full cursor-pointer list-none items-center justify-center gap-[8px] px-[8px] py-[12px] text-center text-[1.42rem] font-medium leading-[1.2] tracking-[0.01em] text-gr-blue transition-colors duration-200 hover:text-gr-gold md:text-[1.5rem]">
+                <span>{pharmacyNavItem.label}</span>
+                <span class="mobile-menu-chevron h-0 w-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-gr-blue transition-transform duration-200 ease-out" aria-hidden="true"></span>
+              </summary>
+
+              <div class="overflow-hidden">
+                <div class="mx-auto w-full max-w-[360px] px-[4px] py-[12px]">
+                  <div class="relative pl-[18px]">
+                    <span class="pointer-events-none absolute bottom-[8px] left-[6px] top-[8px] w-px bg-gradient-to-b from-gr-gold/20 via-gr-gold/70 to-gr-gold/20" aria-hidden="true"></span>
+                    {pharmacyItems.map((item) => (
+                      isRealLink(item.href) ? (
+                        <a
+                          class="group/resource-mobile-card relative flex w-full items-start gap-[10px] py-[11px] pr-[2px] text-left transition-colors duration-200 hover:text-gr-gold"
+                          href={item.href}
+                          data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
+                        >
+                          <span class="absolute -left-[16px] top-[18px] h-[7px] w-[7px] rounded-full bg-gr-gold/80 shadow-[0_0_0_3px_rgba(245,246,244,0.95)]" aria-hidden="true"></span>
+                          <span class="inline-flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[7px] bg-gr-blue/[0.08] text-gr-blue">
+                            <ResourceIcon name={item.icon} class="h-[17px] w-[17px]" />
+                          </span>
+                          <span class="block pt-[3px]">
+                            <span class="block text-[1.02rem] font-medium leading-[1.15] text-gr-blue transition-colors duration-200 group-hover/resource-mobile-card:text-gr-gold">{item.title}</span>
+                          </span>
+                        </a>
+                      ) : (
+                        <span class="relative flex w-full items-start gap-[10px] py-[11px] pr-[2px] text-left">
+                          <span class="absolute -left-[16px] top-[18px] h-[7px] w-[7px] rounded-full bg-gr-gold/80 shadow-[0_0_0_3px_rgba(245,246,244,0.95)]" aria-hidden="true"></span>
+                          <span class="inline-flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[7px] bg-gr-blue/[0.08] text-gr-blue">
+                            <ResourceIcon name={item.icon} class="h-[17px] w-[17px]" />
+                          </span>
+                          <span class="block pt-[3px]">
+                            <span class="block text-[1.02rem] font-medium leading-[1.15] text-gr-blue">{item.title}</span>
+                          </span>
+                        </span>
+                      )
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </details>
+          )}
+        </div>
+      </div>
+
+      <div class="w-full max-w-[460px] py-[10px] md:py-[12px]" aria-hidden="true">
+        <div class="relative mx-auto h-px w-full bg-gradient-to-r from-transparent via-gr-border to-transparent">
+          <span class="absolute left-1/2 top-1/2 h-[8px] w-[8px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gr-gold/80 bg-gr-bg"></span>
+        </div>
+      </div>
+
+      <div class="flex w-full max-w-[460px] flex-col gap-[10px]">
+        {isRealLink(loginLink.href) ? (
+          <a
+            class="inline-flex min-h-[49px] w-full items-center justify-center rounded-full bg-gr-gold px-[15px] py-[9px] text-[1.36rem] font-medium leading-[1.2] text-white transition-[box-shadow,filter] duration-300 ease-out hover:shadow-[0_10px_20px_rgba(186,161,71,0.28)] hover:brightness-[1.03] focus-visible:shadow-[0_10px_20px_rgba(186,161,71,0.28)] focus-visible:brightness-[1.03] md:min-h-[51px] md:text-[1.42rem]"
+            href={loginLink.href}
+          >
+            {loginLink.label}
+          </a>
+        ) : (
+          <button
+            type="button"
+            class="inline-flex min-h-[49px] w-full cursor-pointer items-center justify-center rounded-full bg-gr-gold px-[15px] py-[9px] text-[1.36rem] font-medium leading-[1.2] text-white transition-[box-shadow,filter] duration-300 ease-out hover:shadow-[0_10px_20px_rgba(186,161,71,0.28)] hover:brightness-[1.03] focus-visible:shadow-[0_10px_20px_rgba(186,161,71,0.28)] focus-visible:brightness-[1.03] md:min-h-[51px] md:text-[1.42rem]"
+            aria-label={loginLink.label}
+          >
+            {loginLink.label}
+          </button>
+        )}
+
+        {isRealLink(registerLink.href) ? (
+          <a
+            class="inline-flex min-h-[49px] w-full items-center justify-center rounded-full border border-gr-gold bg-transparent px-[15px] py-[9px] text-[1.36rem] font-medium leading-[1.2] text-gr-gold transition-[box-shadow,background-color,color] duration-300 ease-out hover:bg-gr-gold hover:text-white hover:shadow-[0_10px_20px_rgba(186,161,71,0.24)] focus-visible:bg-gr-gold focus-visible:text-white focus-visible:shadow-[0_10px_20px_rgba(186,161,71,0.24)] md:min-h-[51px] md:text-[1.42rem]"
+            href={registerLink.href}
+          >
+            {registerLink.label}
+          </a>
+        ) : (
+          <button
+            type="button"
+            class="inline-flex min-h-[49px] w-full cursor-pointer items-center justify-center rounded-full border border-gr-gold bg-transparent px-[15px] py-[9px] text-[1.36rem] font-medium leading-[1.2] text-gr-gold transition-[box-shadow,background-color,color] duration-300 ease-out hover:bg-gr-gold hover:text-white hover:shadow-[0_10px_20px_rgba(186,161,71,0.24)] focus-visible:bg-gr-gold focus-visible:text-white focus-visible:shadow-[0_10px_20px_rgba(186,161,71,0.24)] md:min-h-[51px] md:text-[1.42rem]"
+            aria-label={registerLink.label}
+          >
+            {registerLink.label}
+          </button>
+        )}
+      </div>
+
+      <a
+        class="mt-auto w-full max-w-[460px] pt-[18px] text-center text-[1rem] leading-[1.2] text-gr-blue md:pt-[22px] md:text-[1.03rem]"
+        href="mailto:info@generarecetas.com"
+      >
+        info@generarecetas.com
+      </a>
+    </aside>
+  </div>
+</div>
+
+<style is:inline>
+  .language-switcher > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .language-switcher[open] > summary {
+    border-color: rgb(47 86 104 / 32%);
+    box-shadow: 0 10px 18px rgb(47 86 104 / 8%);
+  }
+
+  .language-option.is-active {
+    background: rgb(0 0 0 / 0.05);
+  }
+
+  .language-option.is-active span {
+    color: rgb(0 0 0);
+  }
+
+  .mobile-menu-toggle:checked ~ .mobile-menu-shell .mobile-menu-panel {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav-details[open] > summary .mobile-menu-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mobile-menu-panel {
+    transform: translateX(100%);
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html:has(#mobile-menu-toggle:checked),
+  body:has(#mobile-menu-toggle:checked) {
+    overflow: hidden;
+  }
+</style>
+
+<script is:inline define:vars={{ defaultLanguage }}>
+  (() => {
+    const switchers = Array.from(document.querySelectorAll("[data-language-switcher]"));
+    const currentLabels = Array.from(document.querySelectorAll("[data-language-current]"));
+    const optionButtons = Array.from(document.querySelectorAll("[data-language-option]"));
+
+    if (!switchers.length || !currentLabels.length || !optionButtons.length) {
+      return;
+    }
+
+    const storageKey = "gr-language";
+    const labels = new Map();
+    const allowed = new Set();
+
+    optionButtons.forEach((button) => {
+      const value = button.getAttribute("data-language-option");
+      const shortLabel = button.querySelector("span")?.textContent?.trim();
+
+      if (!value || !shortLabel) {
+        return;
+      }
+
+      allowed.add(value);
+      labels.set(value, shortLabel);
+    });
+
+    const getStoredLanguage = () => {
+      try {
+        const stored = window.localStorage.getItem(storageKey);
+        return stored && allowed.has(stored) ? stored : null;
+      } catch {
+        return null;
+      }
+    };
+
+    const applyLanguage = (value) => {
+      const nextValue = allowed.has(value) ? value : defaultLanguage;
+
+      currentLabels.forEach((label) => {
+        label.textContent = labels.get(nextValue) || nextValue.toUpperCase();
+      });
+
+      optionButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-language-option") === nextValue;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      document.documentElement.lang = nextValue;
+
+      try {
+        window.localStorage.setItem(storageKey, nextValue);
+      } catch {
+        // Ignore storage failures.
+      }
+    };
+
+    applyLanguage(getStoredLanguage() || defaultLanguage);
+
+    optionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextValue = button.getAttribute("data-language-option");
+
+        if (!nextValue) {
+          return;
+        }
+
+        applyLanguage(nextValue);
+        switchers.forEach((switcher) => {
+          switcher.removeAttribute("open");
+        });
+      });
+    });
+
+    switchers.forEach((switcher) => {
+      switcher.addEventListener("toggle", () => {
+        if (!switcher.hasAttribute("open")) {
+          return;
+        }
+
+        switchers.forEach((otherSwitcher) => {
+          if (otherSwitcher === switcher) {
+            return;
+          }
+
+          otherSwitcher.removeAttribute("open");
+        });
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (switchers.some((switcher) => switcher.contains(target))) {
+        return;
+      }
+
+      switchers.forEach((switcher) => {
+        switcher.removeAttribute("open");
+      });
+    });
+  })();
+</script>

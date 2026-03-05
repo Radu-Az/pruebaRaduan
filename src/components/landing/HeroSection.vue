@@ -13,14 +13,14 @@ const marqueeCards = [...featureCards, ...featureCards];
     <h1 id="hero-title" class="gr-heading-1 text-gr-blue">
       Motivamos la buena
       <br />
-      prescripci&oacute;n veterinaria
+      prescripción veterinaria
       <br />
-      <span class="mt-[9px] inline-block text-gr-gold">&iexcl;Nueva app!</span>
+      <span class="mt-[9px] inline-block text-gr-gold">¡Nueva app!</span>
     </h1>
-    <p class="gr-body mt-[9px] text-gr-blue">M&aacute;s de 15 a&ntilde;os de experiencia</p>
+    <p class="gr-body mt-[9px] text-gr-blue">Más de 15 años de experiencia</p>
 
     <div
-      class="mx-auto mt-[28px] w-full max-w-[376px] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:mt-[32px] md:max-w-[472px] min-[1200px]:mt-[34px] min-[1200px]:max-w-[504px]"
+      class="mx-auto mt-[28px] w-full max-w-[376px] overflow-hidden md:mt-[32px] md:max-w-[472px] md:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:[-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] min-[1200px]:mt-[34px] min-[1200px]:max-w-[504px]"
       aria-label="Funcionalidades principales"
     >
       <div class="landing-feature-track flex w-max">
@@ -38,7 +38,7 @@ const marqueeCards = [...featureCards, ...featureCards];
             <template v-if="feature.id === 'consumo-antibioticos'">
               Consumo
               <br />
-              antibioticos
+              antibióticos
             </template>
             <template v-else>{{ feature.title }}</template>
           </p>
@@ -49,28 +49,25 @@ const marqueeCards = [...featureCards, ...featureCards];
 </template>
 
 <style scoped>
-@keyframes landing-hero-reveal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0);
-    filter: blur(3px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    filter: blur(0);
-  }
-}
-
 .landing-hero-intro {
-  animation: landing-hero-reveal 780ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
-  will-change: transform, opacity, filter;
+  animation: landing-hero-reveal 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .landing-feature-track {
   animation: landing-feature-marquee 26s linear infinite;
   will-change: transform;
+}
+
+@keyframes landing-hero-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes landing-feature-marquee {
@@ -84,10 +81,7 @@ const marqueeCards = [...featureCards, ...featureCards];
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-hero-intro {
-    animation: none !important;
-  }
-
+  .landing-hero-intro,
   .landing-feature-track {
     animation: none !important;
   }

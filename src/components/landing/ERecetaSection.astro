@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import erecetaImage from "../../assets/landing/e-recetas.png";
+---
+
+<section
+  class="landing-ereceta relative mt-[38px] w-full py-[28px] md:mt-[48px] md:py-[34px] min-[1200px]:mt-[56px] min-[1200px]:py-[42px]"
+  style="content-visibility: auto; contain-intrinsic-size: 840px;"
+  aria-labelledby="ereceta-title"
+>
+  <span class="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-[rgb(186_161_71_/_0.08)]" aria-hidden="true"></span>
+  <span class="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 bg-gr-border/35" aria-hidden="true"></span>
+  <span class="pointer-events-none absolute left-1/2 bottom-0 h-px w-screen -translate-x-1/2 bg-gr-border/25" aria-hidden="true"></span>
+
+  <div class="relative mx-auto min-h-[560px] w-full max-w-[1200px] overflow-hidden px-[16px] py-[24px] md:min-h-[630px] md:px-[24px] md:py-[30px] min-[1200px]:min-h-[710px] min-[1200px]:px-[32px] min-[1200px]:py-[40px]">
+    <div class="relative z-10 grid min-h-[510px] items-center gap-[28px] min-[1020px]:min-h-[560px] min-[1020px]:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] min-[1200px]:min-h-[620px] min-[1200px]:gap-[42px]">
+      <div class="mx-auto w-full max-w-[620px] min-[1020px]:mx-0 reveal-up reveal-delay-1">
+        <h2 id="ereceta-title" class="gr-heading-2 max-w-[12ch] text-gr-gold">e-Receta veterinaria</h2>
+        <p class="gr-subtitle mt-[12px] max-w-[26ch] text-gr-blue">
+          La nueva app Generarecetas es segura, &aacute;gil y completa
+        </p>
+        <p class="gr-body mt-[16px] max-w-[56ch] text-gr-blue">
+          La nueva aplicación web más intuitiva, con servicio total al sector veterinario y ganadero, donde podrás obtener toda la información actualizada en torno a la Receta electrónica veterinaria, registros de tratamientos digital, consumo de antibióticos y un largo etc... Una evolución de nuestra solución anterior, respaldada por más de 12 años de experiencia en este sector, con una tecnología responsable, eficiente y segura.
+        </p>
+      </div>
+
+      <div class="reveal-up reveal-delay-2">
+        <div class="relative mx-auto flex min-h-[280px] w-full max-w-[980px] items-center justify-center md:min-h-[360px] min-[1200px]:min-h-[440px]">
+          <Image
+            src={erecetaImage}
+            alt="Imagen e-Receta"
+            class="relative z-10 h-auto w-[118%] max-w-[980px] object-contain md:w-[126%] min-[1200px]:w-[136%]"
+            loading="lazy"
+            format="webp"
+            widths={[720, 960, 1280, 1600]}
+            sizes="(min-width: 1200px) 58vw, (min-width: 1020px) 50vw, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

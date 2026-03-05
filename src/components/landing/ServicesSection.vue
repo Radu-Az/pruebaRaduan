@@ -37,7 +37,7 @@ const pageCount = computed(() => servicePages.value.length);
 const canPrev = computed(() => selectedIndex.value > 0);
 const canNext = computed(() => selectedIndex.value < pageCount.value - 1);
 const hasControls = computed(() => pageCount.value > 1);
-
+const showCardArtwork = computed(() => viewportWidth.value >= DESKTOP_BREAKPOINT);
 const trackStyle = computed(() => ({
   transform: `translate3d(-${selectedIndex.value * 100}%, 0, 0)`
 }));
@@ -131,15 +131,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="landing-services relative mt-0 w-full py-[24px] md:py-[30px] min-[1200px]:py-[36px]" aria-labelledby="services-title">
+  <section class="landing-services relative mt-0 w-full py-[24px] md:py-[30px] min-[1200px]:py-[36px]" style="content-visibility: auto; contain-intrinsic-size: 980px;" aria-labelledby="services-title">
     <span class="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 bg-[rgb(47_86_104_/_0.06)]" aria-hidden="true"></span>
     <span class="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 bg-gr-border/32" aria-hidden="true"></span>
     <span class="pointer-events-none absolute left-1/2 bottom-0 h-px w-screen -translate-x-1/2 bg-gr-border/24" aria-hidden="true"></span>
 
     <div class="mx-auto w-full max-w-[1200px] px-[16px] md:px-[24px] min-[1200px]:px-[32px]">
-      <h2 id="services-title" class="gr-heading-2 text-center text-gr-gold">SERVICIOS</h2>
+      <h2 id="services-title" class="gr-heading-2 reveal-up text-center text-gr-gold">SERVICIOS</h2>
 
-      <div class="mt-[18px]">
+      <div class="mt-[18px] reveal-up reveal-delay-1">
         <div
           class="relative mx-auto w-full max-w-[420px] md:max-w-none"
           role="region"
@@ -151,12 +151,12 @@ onBeforeUnmount(() => {
           @touchend.passive="onTouchEnd"
         >
           <div class="overflow-hidden">
-            <div class="flex transition-transform duration-500 ease-out" :style="trackStyle">
+            <div class="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" :style="trackStyle">
               <div
                 v-for="(page, pageIndex) in servicePages"
-                :key="`services-page-${pageIndex}`"
-                class="min-w-0 shrink-0 basis-full"
-                :aria-hidden="pageIndex === selectedIndex ? 'false' : 'true'"
+                :key="`page-${pageIndex}`"
+                class="min-w-full"
+                :aria-hidden="pageIndex !== selectedIndex"
               >
                 <div class="grid gap-[12px] md:gap-[14px] min-[1200px]:grid-cols-2 min-[1200px]:gap-[18px]">
                   <article
@@ -165,13 +165,13 @@ onBeforeUnmount(() => {
                     class="relative flex h-[460px] flex-col overflow-hidden rounded-[18px] border border-gr-border/33 bg-white/72 px-[14px] py-[10px] text-left shadow-[0_8px_18px_rgba(47,86,104,0.1)] md:h-[430px] md:px-[18px] md:py-[12px] min-[1200px]:h-[450px]"
                   >
                     <span
-                      v-if="getServiceBackground(service.id)"
-                      class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.15]"
+                      v-if="showCardArtwork && getServiceBackground(service.id)"
+                      class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.2]"
                       :style="{ backgroundImage: `url('${getServiceBackground(service.id)}')` }"
                       aria-hidden="true"
                     ></span>
                     <span
-                      v-if="getServiceBackground(service.id)"
+                      v-if="showCardArtwork && getServiceBackground(service.id)"
                       class="pointer-events-none absolute inset-0 bg-white/74"
                       aria-hidden="true"
                     ></span>

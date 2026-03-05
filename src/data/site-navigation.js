@@ -1,6 +1,6 @@
 export const navItems = [
   { id: "profiles", label: "Perfiles", href: "/perfiles" },
-  { id: "about", label: "Nosotros", href: "#" },
+  { id: "about", label: "Nosotros", href: "/nosotros" },
   { id: "contact", label: "Contacto", href: "/contacto" },
   { id: "pharmacy", label: "Farmacia", href: "#" }
 ];
@@ -9,7 +9,7 @@ export const resourcesItems = [
   {
     title: "GestionGR",
     subtitle: "Gestion integral de la plataforma",
-    href: "#",
+    href: "/gestiongr",
     icon: "gestion"
   },
   {
@@ -21,6 +21,19 @@ export const resourcesItems = [
   {
     title: "Soporte",
     subtitle: "Ayuda tecnica y atencion directa",
+    href: "/soporte",
+    icon: "soporte"
+  }
+];
+
+export const pharmacyItems = [
+  {
+    title: "Dispensacion",
+    href: "#",
+    icon: "gestion"
+  },
+  {
+    title: "Ficha",
     href: "#",
     icon: "soporte"
   }
@@ -28,15 +41,5 @@ export const resourcesItems = [
 
 export const loginLink = { id: "login", label: "Iniciar sesion", href: "#" };
 export const registerLink = { id: "register", label: "Registrarse", href: "#" };
-
-export const languageOptions = [
-  { code: "es", label: "Espanol" },
-  { code: "en", label: "Ingles" },
-  { code: "eu", label: "Euskera" },
-  { code: "ca", label: "Catalan" },
-  { code: "ga", label: "Gallego" },
-  { code: "pt", label: "Portugues" },
-  { code: "fr", label: "Frances" }
-];
 
 export const defaultLanguage = "es";

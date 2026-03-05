@@ -28,8 +28,6 @@ const {
 
 const siteName = "GeneraRecetas";
 const siteUrl = (Astro.site?.toString() || "https://generarecetas.com").replace(/\/$/, "");
-const fontStylesheetUrl =
-  "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap";
 
 const toAbsoluteUrl = (value: string) => {
   if (!value) {
@@ -83,15 +81,6 @@ const structuredDataBlocks = [...defaultStructuredData, ...structuredData];
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="preload" href="/images/logos/logo-generarecetas.svg" as="image" type="image/svg+xml" />
-
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href={fontStylesheetUrl} as="style" />
-    <link rel="stylesheet" href={fontStylesheetUrl} />
-
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
@@ -109,6 +98,10 @@ const structuredDataBlocks = [...defaultStructuredData, ...structuredData];
 
     <title>{pageTitle}</title>
 
+    <script is:inline>
+      document.documentElement.classList.add("has-scroll-reveal");
+    </script>
+
     {
       structuredDataBlocks.map((item) => (
         <script type="application/ld+json" set:html={JSON.stringify(item)} />
@@ -118,5 +111,49 @@ const structuredDataBlocks = [...defaultStructuredData, ...structuredData];
   <body id="page-top" class={bodyClass}>
     <slot />
     <SiteFooter />
+
+    <script is:inline>
+      (() => {
+        const revealItems = Array.from(document.querySelectorAll(".reveal-up"));
+        if (!revealItems.length) {
+          return;
+        }
+
+        const revealAll = () => {
+          revealItems.forEach((item) => item.classList.add("is-visible"));
+        };
+
+        try {
+          if (
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+            !("IntersectionObserver" in window)
+          ) {
+            revealAll();
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
+                }
+
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              });
+            },
+            {
+              threshold: 0.14,
+              rootMargin: "0px 0px -10% 0px"
+            }
+          );
+
+          revealItems.forEach((item) => observer.observe(item));
+        } catch {
+          revealAll();
+        }
+      })();
+    </script>
   </body>
 </html>

@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { profiles } from "../../data/profiles";
 
-const PLACEHOLDER_IMAGE = "/images/placeholders/news-placeholder.svg";
 const RESPONSIVE_FALLBACK_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 const mobileActiveId = ref("");
 const DESKTOP_ROW_SIZE = 4;
@@ -10,9 +9,7 @@ const DESKTOP_ROW_SIZE = 4;
 const preparedProfiles = profiles.map((profile) => ({
   ...profile,
   hasSubprofiles: profile.subprofiles.length > 0,
-  subprofileCount: profile.subprofiles.length,
   href: profile.slug ? `/perfiles/${profile.slug}` : "#",
-  imageSrc: profile.image || PLACEHOLDER_IMAGE,
   mobilePanelId: `profile-mobile-panel-${profile.id}`
 }));
 
@@ -75,7 +72,7 @@ const toggleMobileProfile = (profile) => {
               @click="toggleMobileProfile(profile)"
             ></button>
             <picture class="block h-full w-full">
-              <source media="(max-width: 1199px)" :srcset="profile.imageSrc" />
+              <source media="(max-width: 1199px)" :srcset="profile.image" />
               <img
                 :src="RESPONSIVE_FALLBACK_IMAGE"
                 :alt="`Imagen de perfil ${profile.name}`"
@@ -92,17 +89,9 @@ const toggleMobileProfile = (profile) => {
               aria-hidden="true"
             ></span>
 
-            <div v-if="profile.hasSubprofiles" class="absolute right-[12px] top-[12px] z-10">
-              <span
-                class="shrink-0 rounded-full border border-white/38 bg-white/14 px-[8px] py-[4px] font-space text-[0.65rem] font-[600] uppercase tracking-[0.12em] text-white/88"
-              >
-                {{ profile.subprofileCount }}
-              </span>
-            </div>
-
             <div
-              class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-[18px] text-center transition-[opacity,transform] duration-350"
-              :class="isMobileExpanded(profile.id) ? 'opacity-0 -translate-y-[10px]' : 'opacity-100 translate-y-0'"
+              class="pointer-events-none absolute inset-0 z-40 flex items-center justify-center px-[18px] text-center transition-transform duration-350"
+              :class="isMobileExpanded(profile.id) ? '-translate-y-[48px]' : 'translate-y-0'"
             >
               <h2 class="max-w-[13ch] font-space text-[1.42rem] font-[700] leading-[1.04] text-white md:text-[1.48rem]">
                 {{ profile.name }}
@@ -158,7 +147,7 @@ const toggleMobileProfile = (profile) => {
               class="group/card relative min-w-0 basis-0 grow overflow-hidden rounded-[22px] border border-gr-border/34 bg-white/84 shadow-[0_12px_26px_rgba(47,86,104,0.09)] transition-[flex-grow,border-color,box-shadow,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:grow-[0.9] hover:grow-[2.2] hover:border-gr-gold/55 hover:shadow-[0_18px_38px_rgba(47,86,104,0.15)] focus-within:grow-[2.2] focus-within:border-gr-gold/55 focus-within:shadow-[0_18px_38px_rgba(47,86,104,0.15)]"
             >
               <picture class="block h-full w-full">
-                <source media="(min-width: 1200px)" :srcset="profile.imageSrc" />
+                <source media="(min-width: 1200px)" :srcset="profile.image" />
                 <img
                   :src="RESPONSIVE_FALLBACK_IMAGE"
                   :alt="`Imagen de perfil ${profile.name}`"
@@ -179,14 +168,6 @@ const toggleMobileProfile = (profile) => {
                 <h2 class="max-w-[14ch] [overflow-wrap:anywhere] font-space text-[1.5rem] font-[700] leading-[1.02] text-center text-white">
                   {{ profile.name }}
                 </h2>
-              </div>
-
-              <div v-if="profile.hasSubprofiles" class="absolute right-[18px] top-[18px] z-10">
-                <span
-                  class="shrink-0 rounded-full border border-white/34 bg-white/14 px-[10px] py-[6px] font-space text-[0.68rem] font-[600] uppercase tracking-[0.14em] text-white/86 -translate-y-[8px] opacity-0 transition-[opacity,transform] duration-300 group-hover/card:translate-y-0 group-hover/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:opacity-100"
-                >
-                  {{ profile.subprofileCount }}
-                </span>
               </div>
 
               <div
