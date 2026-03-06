@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import {
   defaultLanguage,
   loginLink,
@@ -8,6 +9,7 @@ import {
   resourcesItems
 } from "../../data/site-navigation";
 import ResourceIcon from "./ResourceIcon.astro";
+import mobileMenuLogo from "../../assets/logos/logo-generarecetas-icon.svg";
 
 const profilesNavItem = navItems.find((item) => item.id === "profiles");
 const pharmacyNavItem = navItems.find((item) => item.id === "pharmacy");
@@ -228,13 +230,11 @@ const languageOptions = [
 
       <div class="mb-[84px] mt-[90px] flex w-full max-w-[460px] items-center justify-center md:mb-[96px] md:mt-[108px]">
         <a href="/" class="inline-flex items-center justify-center" aria-label="Ir al inicio" data-astro-prefetch>
-          <img
-            src="/images/logos/logo-generarecetas-icon.svg"
+          <Image
+            src={mobileMenuLogo}
             alt="GeneraRecetas"
             class="block h-auto w-[58px] md:w-[64px]"
-            width="128"
-            height="128"
-            decoding="async"
+            loading="eager"
           />
         </a>
       </div>

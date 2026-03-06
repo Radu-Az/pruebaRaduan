@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 const currentYear = new Date().getFullYear();
+import footerLogo from "../../assets/logos/GRlogoFooter.svg";
+import ntecLogo from "../../assets/logos/logo-ntec.svg";
 ---
 
 <footer class="mt-0 bg-gradient-to-b from-[#2f5668] to-[#284c5d] text-white" style="content-visibility: auto; contain-intrinsic-size: 720px;">
@@ -16,14 +19,11 @@ const currentYear = new Date().getFullYear();
 
     <div class="flex flex-col items-center gap-[34px] lg:flex-row lg:items-start lg:gap-[88px]">
       <div class="flex w-full justify-center lg:w-[320px] lg:shrink-0 lg:justify-start lg:pt-[2px]">
-        <img
-          src="/images/logos/GRlogoFooter.svg"
+        <Image
+          src={footerLogo}
           alt="GeneraRecetas"
           class="block h-auto w-[152px] md:w-[178px]"
-          width="428"
-          height="140"
           loading="lazy"
-          decoding="async"
         />
       </div>
 
@@ -77,14 +77,11 @@ const currentYear = new Date().getFullYear();
   <div class="border-t border-white/10 bg-[#24495b]">
     <div class="mx-auto flex min-h-[58px] w-full max-w-[1280px] items-center justify-center gap-[8px] px-[14px] py-[12px] text-center text-[0.95rem] text-white/92 md:px-[20px] md:text-[1.01rem]">
       <span>&copy; {currentYear} Powered by</span>
-      <img
-        src="/images/logos/logo-ntec.svg"
+      <Image
+        src={ntecLogo}
         alt="Ntec"
         class="block h-auto w-[56px] shrink-0 md:w-[62px]"
-        width="124"
-        height="32"
         loading="lazy"
-        decoding="async"
       />
     </div>
   </div>

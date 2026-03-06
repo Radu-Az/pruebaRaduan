@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import SiteHeader from "../components/header/SiteHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import gestiongrLogo from "../assets/logos/logo-gestiongr.svg";
 ---
 
 <BaseLayout
@@ -17,12 +19,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="pointer-events-none absolute right-[-48px] top-[-48px] h-[180px] w-[180px] rounded-full bg-gr-gold/10 blur-3xl"></div>
 
         <div class="relative max-w-[760px] reveal-up">
-          <img
-            src="/images/logos/logo-gestiongr.svg"
+          <Image
+            src={gestiongrLogo}
             alt="GestionGR"
             class="h-auto w-[168px] md:w-[196px]"
             loading="eager"
-            decoding="async"
+            width="316"
+            height="72"
           />
 
           <h1 class="mt-[20px] font-space text-[2rem] font-[700] leading-[1.04] text-gr-blue md:mt-[24px] md:text-[3.35rem]">

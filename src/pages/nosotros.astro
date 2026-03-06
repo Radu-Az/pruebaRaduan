@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import SiteHeader from "../components/header/SiteHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import aboutImage from "../assets/pages/Nosotros.png";
 ---
 
 <BaseLayout
@@ -14,12 +16,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="mx-auto w-full max-w-[1200px] py-[20px] md:py-[34px]">
       <div class="grid items-start gap-[22px] min-[980px]:grid-cols-[minmax(320px,460px)_minmax(0,1fr)] min-[980px]:items-center min-[1200px]:gap-[38px]">
         <div class="mx-auto w-full max-w-[320px] reveal-up min-[980px]:max-w-none min-[980px]:self-center">
-          <img
-            src="/images/Nosotros.png"
+          <Image
+            src={aboutImage}
             alt="Equipo de Ntecweb"
             class="mx-auto block h-auto w-full"
             loading="eager"
-            decoding="async"
+            format="webp"
+            widths={[480, 720, 920]}
+            sizes="(min-width: 980px) 38vw, 100vw"
           />
         </div>
 

@@ -1,7 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import { connections } from "../../data/landing";
+import presvetLogo from "../../assets/logos/PresvetLogo.png";
+import recevetLogo from "../../assets/logos/RecevetLogo.png";
 const accentTextIds = new Set(["gtr", "recevex"]);
 const logoScaleIds = new Set(["presvet", "recevet"]);
+const importedLogos = {
+  presvet: presvetLogo,
+  recevet: recevetLogo
+};
 ---
 
 <section
@@ -26,8 +33,8 @@ const logoScaleIds = new Set(["presvet", "recevet"]);
           >
             {connection.logo ? (
               <div class="flex h-[86px] w-full items-center justify-center">
-                <img
-                  src={connection.logo}
+                <Image
+                  src={importedLogos[connection.id]}
                   alt={connection.alt}
                   class:list={[
                     "w-auto max-w-full object-contain transition-opacity duration-300 min-[1200px]:opacity-92 min-[1200px]:hover:opacity-100",
@@ -35,7 +42,9 @@ const logoScaleIds = new Set(["presvet", "recevet"]);
                     connection.id === "recevet" ? "md:max-h-[84px]" : ""
                   ]}
                   loading="lazy"
-                  decoding="async"
+                  format="webp"
+                  widths={[240, 360, 480]}
+                  sizes="(min-width: 1200px) 18vw, (min-width: 640px) 42vw, 80vw"
                 />
               </div>
             ) : (
