@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder transicion digital</title>
+  <desc id="desc">Ilustracion abstracta para la etapa de transicion digital</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#edf3f6"/>
+      <stop offset="100%" stop-color="#dae4ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)" rx="36"/>
+  <rect x="170" y="148" width="860" height="464" rx="34" fill="#214152" opacity="0.96"/>
+  <rect x="228" y="212" width="344" height="258" rx="22" fill="#f7f2e4"/>
+  <rect x="614" y="212" width="188" height="108" rx="22" fill="#baa147" opacity="0.92"/>
+  <rect x="840" y="212" width="132" height="108" rx="22" fill="#ffffff" opacity="0.92"/>
+  <rect x="614" y="352" width="358" height="118" rx="22" fill="#ffffff" opacity="0.12"/>
+  <rect x="228" y="506" width="744" height="14" rx="7" fill="#ffffff" opacity="0.16"/>
+  <circle cx="360" cy="342" r="78" fill="#2f5668" opacity="0.14"/>
+  <circle cx="456" cy="342" r="48" fill="#2f5668" opacity="0.18"/>
+  <text x="170" y="646" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="700">ARCHIVO 03</text>
+  <text x="170" y="702" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" opacity="0.7">Nueva etapa digital</text>
+</svg>

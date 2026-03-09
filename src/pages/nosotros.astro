@@ -2,67 +2,495 @@
 import { Image } from "astro:assets";
 import SiteHeader from "../components/header/SiteHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import aboutImage from "../assets/pages/Nosotros.png";
+import storyFoundation from "../assets/pages/story-foundation.svg";
+import storyExpansion from "../assets/pages/story-expansion.svg";
+import storyTransition from "../assets/pages/story-transition.svg";
+import storyNetwork from "../assets/pages/story-network.svg";
+import storyPresent from "../assets/pages/story-present.svg";
+
+const storyMilestones = [
+  {
+    year: "2012",
+    title: "Lorem ipsum dolor sit amet",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, velit quis volutpat ultrices, nibh augue feugiat magna, vitae varius risus lectus non sem. Sed vitae urna gravida, faucibus libero a, faucibus ipsum.",
+    note:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis eros sed est viverra, in condimentum augue viverra.",
+    image: storyFoundation,
+    alt: "Placeholder de la etapa de fundacion"
+  },
+  {
+    year: "2015",
+    title: "Consectetur adipiscing elit",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit, lorem vel commodo feugiat, mauris velit maximus lorem, ac tincidunt velit risus sit amet sapien. Nam pulvinar faucibus turpis, nec feugiat tortor faucibus in.",
+    note:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod finibus nisl, a luctus lorem blandit id.",
+    image: storyExpansion,
+    alt: "Placeholder de la etapa de expansion"
+  },
+  {
+    year: "2018",
+    title: "Vivamus malesuada tincidunt eros",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus malesuada tincidunt eros, vitae suscipit libero ultricies sed. Cras sed lacus sed massa volutpat vestibulum. Donec a sem sed justo malesuada feugiat.",
+    note:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In suscipit, turpis non tincidunt pretium, augue ipsum ultrices nisl, vitae elementum ante lectus nec erat.",
+    image: storyTransition,
+    alt: "Placeholder de la etapa de transicion digital"
+  },
+  {
+    year: "2021",
+    title: "Donec non tellus neque",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non tellus et neque vehicula aliquet. Ut facilisis lacus at nibh viverra, vitae interdum ex luctus. Duis ac orci in lorem faucibus iaculis.",
+    note:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum faucibus enim vitae libero elementum, id gravida augue interdum.",
+    image: storyNetwork,
+    alt: "Placeholder de la etapa de conexion y red"
+  },
+  {
+    year: "Hoy",
+    title: "Aenean pretium massa odio",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pretium massa a odio luctus, sed laoreet lacus congue. Suspendisse potenti. Sed condimentum, mauris non blandit facilisis, lorem nibh dictum neque, a ultrices mauris est non mi.",
+    note:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum tellus sed metus fringilla, vitae gravida enim efficitur.",
+    image: storyPresent,
+    alt: "Placeholder de la etapa actual"
+  }
+];
 ---
 
 <BaseLayout
   title="Nosotros | GeneraRecetas"
-  description="Conoce al equipo de Ntecweb y su trayectoria en el desarrollo de software veterinario y receta electronica."
+  description="Recorre la historia de Ntecweb en una pagina tipo timeline con narrativa visual y hitos clave de su evolucion."
   canonical="/nosotros"
 >
   <SiteHeader />
 
-  <main class="px-[14px] pb-[48px] pt-0 md:px-[20px] md:pb-[72px]">
-    <section class="mx-auto w-full max-w-[1200px] py-[20px] md:py-[34px]">
-      <div class="grid items-start gap-[22px] min-[980px]:grid-cols-[minmax(320px,460px)_minmax(0,1fr)] min-[980px]:items-center min-[1200px]:gap-[38px]">
-        <div class="mx-auto w-full max-w-[320px] reveal-up min-[980px]:max-w-none min-[980px]:self-center">
-          <Image
-            src={aboutImage}
-            alt="Equipo de Ntecweb"
-            class="mx-auto block h-auto w-full"
-            loading="eager"
-            format="webp"
-            widths={[480, 720, 920]}
-            sizes="(min-width: 980px) 38vw, 100vw"
-          />
-        </div>
-
-        <div class="min-w-0 py-[6px] reveal-up reveal-delay-1 md:py-[10px]">
-          <p class="font-space text-[0.95rem] font-[600] uppercase tracking-[0.18em] text-gr-gold md:text-[1.02rem]">
-            Nosotros
-          </p>
-
-          <h1 class="mt-[10px] max-w-[760px] font-space text-[2rem] font-[700] leading-[1.06] text-gr-blue md:text-[3rem]">
-            &iquest;Qui&eacute;nes somos?
-          </h1>
-
-          <div class="mt-[16px] h-px w-full max-w-[780px] bg-gr-border/28"></div>
-
-          <div class="mt-[18px] max-w-[780px] space-y-[16px] text-[1rem] leading-[1.78] text-gr-blue/84 md:text-[1.05rem] md:leading-[1.86]">
-            <p>
-              En Ntecweb somos un grupo de trabajo joven y dinámico, con una amplia trayectoria en el sector
-              tecnológico, dedicado al desarrollo, implantación y mantenimiento de aplicaciones web para
-              diferentes sectores, sobre todo enfocados al desarrollo de softwares de gestión de pequeño y
-              gran animal, ligados al uso de la receta veterinaria electrónica (somos pioneros en España),
-              como pueden ser veterinarios, explotaciones ganaderas, centros dispensadores, fábricas de pienso,
-              integradoras y un largo etcétera, y siempre adaptados a los continuos cambios de legislación.
-            </p>
-
-            <p>
-              Contamos con aplicaciones para la gestión integral de la receta electrónica y su
-              trazabilidad, gestión para clínicas veterinarias, aplicaciones de seguimiento de pedidos a
-              proveedor, Plan Sanitario Integral y más. Todo esto va acompañado de un completo servicio de
-              atención al cliente para resolver dudas y recoger sugerencias que puedan surgir en el uso diario de
-              nuestras aplicaciones.
-            </p>
-
-            <p>
-              Nuestro equipo está en continua formación y actualización con el fin de prestar el
-              mejor servicio a nuestros clientes, donde cliente y empresa forman parte de un mismo equipo.
-            </p>
-          </div>
-        </div>
+  <main class="overflow-hidden px-[14px] pb-[56px] pt-0 md:px-[20px] md:pb-[84px]">
+    <section class="story-shell mx-auto w-full max-w-[1280px] py-[22px] md:py-[34px]">
+      <div class="story-hero reveal-up">
+        <span class="story-kicker">Nosotros</span>
+        <h1 class="story-title">Lorem ipsum dolor sit amet</h1>
+        <p class="story-intro reveal-up reveal-delay-1">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo, magna nec feugiat luctus, dui
+          augue suscipit augue, vitae luctus sem justo in lacus. Nulla facilisi.
+        </p>
       </div>
+
+      <ol class="story-timeline" aria-label="Historia de Ntecweb">
+        {
+          storyMilestones.map((milestone, index) => (
+            <li class="story-entry reveal-up" style={`transition-delay:${160 + index * 120}ms`}>
+              <div class="story-entry__marker" aria-hidden="true">
+                <span class="story-entry__dot"></span>
+              </div>
+
+              <article class="story-copy">
+                <span class="story-year">{milestone.year}</span>
+                <h2 class="story-step-title">{milestone.title}</h2>
+                <p class="story-step-body">{milestone.body}</p>
+                <p class="story-step-note">{milestone.note}</p>
+              </article>
+
+              <figure class="story-media">
+                <div class="story-media__frame">
+                  <Image
+                    src={milestone.image}
+                    alt={milestone.alt}
+                    class="story-media__image"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    widths={[540, 760, 960]}
+                    sizes="(min-width: 1100px) 34vw, (min-width: 768px) 76vw, 100vw"
+                  />
+                </div>
+              </figure>
+            </li>
+          ))
+        }
+      </ol>
+
+      <section class="story-outro reveal-up reveal-delay-2">
+        <div class="story-outro__line" aria-hidden="true"></div>
+        <p class="story-outro__eyebrow">Lorem ipsum</p>
+        <h2 class="story-outro__title">Consectetur adipiscing elit</h2>
+        <p class="story-outro__body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, purus id malesuada posuere, augue
+          urna varius purus, non interdum urna justo ac neque. Donec tincidunt ante at lectus vulputate congue.
+        </p>
+      </section>
     </section>
   </main>
 </BaseLayout>
+
+<style is:inline>
+  .story-shell {
+    position: relative;
+  }
+
+  .story-shell::before,
+  .story-shell::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    border-radius: 999px;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .story-shell::before {
+    top: 72px;
+    right: -24px;
+    width: 220px;
+    height: 220px;
+    background: rgb(186 161 71 / 0.18);
+    animation: story-drift 9s ease-in-out infinite;
+  }
+
+  .story-shell::after {
+    left: -48px;
+    top: 420px;
+    width: 260px;
+    height: 260px;
+    background: rgb(47 86 104 / 0.12);
+    animation: story-drift 11s ease-in-out infinite reverse;
+  }
+
+  .story-hero,
+  .story-timeline,
+  .story-outro {
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-hero {
+    margin: 0 auto;
+    max-width: 860px;
+    text-align: center;
+  }
+
+  .story-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 16px;
+    border: 1px solid rgb(186 161 71 / 0.32);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.78);
+    font-family: var(--font-space);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gr-gold);
+    box-shadow: 0 16px 32px -28px rgb(47 86 104 / 0.24);
+  }
+
+  .story-title {
+    margin: 18px auto 0;
+    max-width: 900px;
+    font-family: var(--font-space);
+    font-size: clamp(2.2rem, 6vw, 4.8rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    color: var(--color-gr-blue);
+  }
+
+  .story-intro {
+    margin: 18px auto 0;
+    max-width: 760px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgb(47 86 104 / 0.76);
+  }
+
+  .story-timeline {
+    position: relative;
+    margin: 44px auto 0;
+    max-width: 1140px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .story-timeline::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, rgb(186 161 71 / 0), rgb(186 161 71 / 0.62), rgb(47 86 104 / 0.26), rgb(186 161 71 / 0));
+  }
+
+  .story-entry {
+    position: relative;
+    display: grid;
+    gap: 18px;
+    padding-left: 52px;
+  }
+
+  .story-entry + .story-entry {
+    margin-top: 34px;
+  }
+
+  .story-entry__marker {
+    position: absolute;
+    left: 6px;
+    top: 34px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.88);
+    box-shadow: 0 12px 24px -18px rgb(47 86 104 / 0.42);
+  }
+
+  .story-entry__dot {
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-gr-gold), var(--color-gr-blue));
+  }
+
+  .story-copy,
+  .story-media__frame {
+    position: relative;
+    z-index: 3;
+    isolation: isolate;
+    border: 1px solid rgb(47 86 104 / 0.12);
+    background: rgb(255 255 255 / 0.94);
+    box-shadow: 0 28px 56px -42px rgb(47 86 104 / 0.34);
+    backdrop-filter: blur(10px);
+  }
+
+  .story-copy {
+    padding: 22px 20px;
+    border-radius: 26px;
+    transition:
+      transform 320ms ease,
+      border-color 320ms ease,
+      box-shadow 320ms ease;
+  }
+
+  .story-entry:hover .story-copy,
+  .story-entry:hover .story-media__frame {
+    transform: translateY(-4px);
+    border-color: rgb(186 161 71 / 0.28);
+    box-shadow: 0 34px 62px -42px rgb(47 86 104 / 0.42);
+  }
+
+  .story-year {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgb(47 86 104 / 0.08);
+    font-family: var(--font-space);
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gr-blue);
+  }
+
+  .story-step-title {
+    margin: 16px 0 0;
+    font-family: var(--font-space);
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.02;
+    color: var(--color-gr-blue);
+  }
+
+  .story-step-body {
+    margin: 16px 0 0;
+    font-size: 1rem;
+    line-height: 1.78;
+    color: rgb(47 86 104 / 0.78);
+  }
+
+  .story-step-note {
+    margin: 16px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid rgb(47 86 104 / 0.1);
+    font-size: 0.96rem;
+    line-height: 1.72;
+    color: rgb(47 86 104 / 0.62);
+  }
+
+  .story-media {
+    margin: 0;
+  }
+
+  .story-media__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    transition:
+      transform 320ms ease,
+      border-color 320ms ease,
+      box-shadow 320ms ease;
+  }
+
+  .story-media__frame::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 34%;
+    background: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(255 255 255 / 0.16));
+    pointer-events: none;
+  }
+
+  .story-media__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .story-outro {
+    margin: 48px auto 0;
+    max-width: 860px;
+    padding: 26px 20px 0;
+    text-align: center;
+  }
+
+  .story-outro__line {
+    width: 1px;
+    height: 64px;
+    margin: 0 auto 22px;
+    background: linear-gradient(180deg, rgb(186 161 71 / 0), rgb(186 161 71 / 0.7));
+  }
+
+  .story-outro__eyebrow {
+    margin: 0;
+    font-family: var(--font-space);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gr-gold);
+  }
+
+  .story-outro__title {
+    margin: 14px 0 0;
+    font-family: var(--font-space);
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.02;
+    color: var(--color-gr-blue);
+  }
+
+  .story-outro__body {
+    max-width: 660px;
+    margin: 18px auto 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgb(47 86 104 / 0.72);
+  }
+
+  @media (min-width: 768px) {
+    .story-entry {
+      padding-left: 72px;
+    }
+
+    .story-entry + .story-entry {
+      margin-top: 42px;
+    }
+
+    .story-timeline::before {
+      left: 25px;
+    }
+
+    .story-entry__marker {
+      left: 12px;
+    }
+
+    .story-copy {
+      padding: 28px 26px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .story-timeline::before {
+      left: 50%;
+      margin-left: -0.5px;
+    }
+
+    .story-entry {
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 430px);
+      align-items: center;
+      gap: 30px;
+      padding-left: 0;
+      min-height: 360px;
+    }
+
+    .story-entry:nth-child(even) {
+      grid-template-columns: minmax(360px, 430px) minmax(0, 1fr);
+    }
+
+    .story-entry:nth-child(even) .story-copy {
+      order: 2;
+    }
+
+    .story-entry:nth-child(even) .story-media {
+      order: 1;
+    }
+
+    .story-entry__marker {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+    }
+
+    .story-entry__dot {
+      width: 13px;
+      height: 13px;
+    }
+
+    .story-copy {
+      max-width: 500px;
+    }
+
+    .story-entry:nth-child(odd) .story-copy {
+      justify-self: end;
+    }
+
+    .story-entry:nth-child(even) .story-copy {
+      justify-self: start;
+    }
+  }
+
+  @keyframes story-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate3d(0, -18px, 0) scale(1.04);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-shell::before,
+    .story-shell::after {
+      animation: none;
+    }
+
+    .story-copy,
+    .story-media__frame {
+      transition: none;
+    }
+  }
+</style>

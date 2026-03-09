@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder red</title>
+  <desc id="desc">Ilustracion abstracta para la etapa de red y conexiones</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#f6f2e7"/>
+      <stop offset="100%" stop-color="#fbfaf7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)" rx="36"/>
+  <circle cx="286" cy="228" r="22" fill="#2f5668"/>
+  <circle cx="544" cy="178" r="22" fill="#baa147"/>
+  <circle cx="760" cy="316" r="22" fill="#2f5668"/>
+  <circle cx="942" cy="228" r="22" fill="#baa147"/>
+  <circle cx="432" cy="430" r="22" fill="#2f5668"/>
+  <circle cx="686" cy="508" r="22" fill="#baa147"/>
+  <path d="M286 228L544 178L760 316L942 228" fill="none" stroke="#2f5668" stroke-width="12" stroke-linecap="round" opacity="0.24"/>
+  <path d="M544 178L432 430L686 508L760 316" fill="none" stroke="#baa147" stroke-width="12" stroke-linecap="round" opacity="0.35"/>
+  <rect x="152" y="126" width="896" height="496" rx="36" fill="none" stroke="#2f5668" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="152" y="654" fill="#2f5668" font-family="Arial, sans-serif" font-size="42" font-weight="700">ARCHIVO 04</text>
+  <text x="152" y="702" fill="#2f5668" font-family="Arial, sans-serif" font-size="22" opacity="0.68">Conexion entre producto, soporte y servicio</text>
+</svg>

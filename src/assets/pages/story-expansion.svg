@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder expansion</title>
+  <desc id="desc">Ilustracion abstracta para la etapa de expansion</desc>
+  <defs>
+    <linearGradient id="bg" x1="10%" x2="90%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#eef3f5"/>
+      <stop offset="100%" stop-color="#f7efe0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)" rx="36"/>
+  <rect x="124" y="164" width="952" height="432" rx="34" fill="#ffffff" opacity="0.88"/>
+  <path d="M200 488C310 350 418 420 520 296C585 218 690 214 786 268C861 310 926 310 1000 236" fill="none" stroke="#2f5668" stroke-width="16" stroke-linecap="round" opacity="0.84"/>
+  <circle cx="200" cy="488" r="22" fill="#baa147"/>
+  <circle cx="520" cy="296" r="22" fill="#baa147"/>
+  <circle cx="786" cy="268" r="22" fill="#baa147"/>
+  <circle cx="1000" cy="236" r="22" fill="#baa147"/>
+  <rect x="202" y="548" width="196" height="18" rx="9" fill="#2f5668" opacity="0.14"/>
+  <rect x="428" y="548" width="196" height="18" rx="9" fill="#2f5668" opacity="0.14"/>
+  <rect x="654" y="548" width="196" height="18" rx="9" fill="#2f5668" opacity="0.14"/>
+  <rect x="880" y="548" width="120" height="18" rx="9" fill="#2f5668" opacity="0.14"/>
+  <text x="124" y="654" fill="#2f5668" font-family="Arial, sans-serif" font-size="42" font-weight="700">ARCHIVO 02</text>
+  <text x="124" y="702" fill="#2f5668" font-family="Arial, sans-serif" font-size="22" opacity="0.68">Expansion de producto y equipo</text>
+</svg>

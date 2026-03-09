@@ -7,7 +7,7 @@ const marqueeCards = [...featureCards, ...featureCards];
 
 <template>
   <section
-    class="landing-hero-intro mx-auto flex min-h-[calc(100svh-110px)] w-full max-w-[560px] flex-col justify-center text-center md:min-h-[calc(100svh-128px)] md:max-w-[780px] min-[1200px]:min-h-[calc(100svh-148px)] min-[1200px]:max-w-[920px]"
+    class="landing-hero-intro mx-auto flex min-h-[calc(100svh-110px)] w-full max-w-[560px] flex-col justify-center text-center md:min-h-[calc(100svh-128px)] md:max-w-[780px] min-[1024px]:max-w-[1060px] min-[1200px]:min-h-[calc(100svh-148px)] min-[1280px]:max-w-[1120px]"
     aria-labelledby="hero-title"
   >
     <h1 id="hero-title" class="gr-heading-1 text-gr-blue">
@@ -20,14 +20,14 @@ const marqueeCards = [...featureCards, ...featureCards];
     <p class="gr-body mt-[9px] text-gr-blue">Más de 15 años de experiencia</p>
 
     <div
-      class="mx-auto mt-[28px] w-full max-w-[376px] overflow-hidden md:mt-[32px] md:max-w-[472px] md:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:[-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] min-[1200px]:mt-[34px] min-[1200px]:max-w-[504px]"
+      class="mx-auto mt-[28px] w-full max-w-[376px] overflow-hidden md:mt-[32px] md:max-w-[700px] md:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:[-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] min-[1024px]:relative min-[1024px]:left-1/2 min-[1024px]:mx-0 min-[1024px]:mt-[34px] min-[1024px]:w-[calc(100%+168px)] min-[1024px]:max-w-none min-[1024px]:-translate-x-1/2 min-[1024px]:[mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)] min-[1024px]:[-webkit-mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)] min-[1280px]:w-[calc(100%+216px)]"
       aria-label="Funcionalidades principales"
     >
-      <div class="landing-feature-track flex w-max">
+      <div class="landing-feature-track flex w-max gap-[20px] md:gap-[50px] min-[1024px]:gap-[88px] min-[1280px]:gap-[112px]">
         <article
           v-for="(feature, index) in marqueeCards"
           :key="`${feature.id}-${index}`"
-          class="mr-[8px] flex h-[86px] w-[86px] flex-col items-center rounded-[10px] border-2 border-gr-muted px-[6px] pb-[7px] pt-[7px] md:mr-[14px] md:h-[104px] md:w-[104px] md:rounded-[11px] md:pb-[9px] md:pt-[9px] min-[1200px]:mr-[16px] min-[1200px]:h-[110px] min-[1200px]:w-[110px] min-[1200px]:pb-[10px] min-[1200px]:pt-[10px]"
+          class="shrink-0 flex h-[86px] w-[86px] flex-col items-center rounded-[10px] border-2 border-gr-muted px-[6px] pb-[7px] pt-[7px] md:h-[104px] md:w-[104px] md:rounded-[11px] md:pb-[9px] md:pt-[9px] min-[1024px]:h-[122px] min-[1024px]:w-[122px] min-[1024px]:rounded-[12px] min-[1024px]:px-[8px] min-[1024px]:pb-[11px] min-[1024px]:pt-[11px] min-[1280px]:h-[128px] min-[1280px]:w-[128px] min-[1280px]:pb-[12px] min-[1280px]:pt-[12px]"
           :aria-hidden="index >= featureCards.length"
         >
           <div class="flex h-[44px] w-full items-center justify-center md:h-[60px] min-[1200px]:h-[64px]" aria-hidden="true">

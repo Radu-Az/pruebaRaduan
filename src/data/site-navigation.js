@@ -8,19 +8,19 @@ export const navItems = [
 export const resourcesItems = [
   {
     title: "GestionGR",
-    subtitle: "Gestion integral de la plataforma",
+    subtitle: "Acceso centralizado a la plataforma y a sus herramientas conectadas",
     href: "/gestiongr",
     icon: "gestion"
   },
   {
     title: "Noticias",
-    subtitle: "Actualidad del sector veterinario",
+    subtitle: "Novedades, actualidad y contenidos del entorno veterinario",
     href: "/noticias",
     icon: "noticias"
   },
   {
     title: "Soporte",
-    subtitle: "Ayuda tecnica y atencion directa",
+    subtitle: "Ayuda tecnica, documentacion y atencion directa al usuario",
     href: "/soporte",
     icon: "soporte"
   }
@@ -29,11 +29,13 @@ export const resourcesItems = [
 export const pharmacyItems = [
   {
     title: "Dispensacion",
+    subtitle: "Consulta y seguimiento de los procesos de dispensacion",
     href: "#",
     icon: "gestion"
   },
   {
     title: "Ficha",
+    subtitle: "Acceso rapido a la informacion y detalle de cada ficha",
     href: "#",
     icon: "soporte"
   }

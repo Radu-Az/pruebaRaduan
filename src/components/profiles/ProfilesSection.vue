@@ -1,13 +1,35 @@
-﻿<script setup>
+<script setup>
 import { ref } from "vue";
 import { profiles } from "../../data/profiles";
 
-const RESPONSIVE_FALLBACK_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+const props = defineProps({
+  profileImages: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
 const mobileActiveId = ref("");
 const DESKTOP_ROW_SIZE = 4;
 
-const preparedProfiles = profiles.map((profile) => ({
+const preparedProfiles = profiles.map((profile, index) => ({
   ...profile,
+  preloadPriority: index < 2,
+  imageSources: props.profileImages[profile.id] ?? {
+    mobileAvifSrc: profile.image,
+    mobileAvifSrcSet: profile.image,
+    mobileWebpSrc: profile.image,
+    mobileWebpSrcSet: profile.image,
+    mobileSizes: "100vw",
+    desktopAvifSrc: profile.image,
+    desktopAvifSrcSet: profile.image,
+    desktopWebpSrc: profile.image,
+    desktopWebpSrcSet: profile.image,
+    desktopSizes: "25vw",
+    fallbackSrc: profile.image,
+    width: 1200,
+    height: 800
+  },
   hasSubprofiles: profile.subprofiles.length > 0,
   href: profile.slug ? `/perfiles/${profile.slug}` : "#",
   mobilePanelId: `profile-mobile-panel-${profile.id}`
@@ -35,16 +57,16 @@ const toggleMobileProfile = (profile) => {
 
 <template>
   <section class="relative mt-0 w-full py-[26px] md:py-[34px] min-[1200px]:py-[44px]" aria-labelledby="profiles-title">
-    <span class="pointer-events-none absolute left-1/2 bottom-0 h-px w-screen -translate-x-1/2 bg-gr-border/18" aria-hidden="true"></span>
+    <span class="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gr-border/18" aria-hidden="true"></span>
 
     <div class="mx-auto w-full max-w-[1280px] px-[16px] md:px-[24px] min-[1200px]:px-[32px]">
       <h1 id="profiles-title" class="sr-only">Perfiles</h1>
 
       <div class="mx-auto max-w-[1160px]">
         <div class="grid gap-[12px] md:grid-cols-2 md:gap-[14px] min-[1200px]:hidden">
-            <article
-              v-for="profile in preparedProfiles"
-              :key="profile.id"
+          <article
+            v-for="profile in preparedProfiles"
+            :key="profile.id"
             class="relative overflow-hidden rounded-[18px] border border-gr-border/36 bg-white/84 shadow-[0_10px_24px_rgba(47,86,104,0.08)] transition-[height,border-color,box-shadow] duration-350 ease-[cubic-bezier(0.22,1,0.36,1)]"
             :class="
               isMobileExpanded(profile.id)
@@ -72,14 +94,27 @@ const toggleMobileProfile = (profile) => {
               @click="toggleMobileProfile(profile)"
             ></button>
             <picture class="block h-full w-full">
-              <source media="(max-width: 1199px)" :srcset="profile.image" />
+              <source
+                media="(max-width: 1199px)"
+                :srcset="profile.imageSources.mobileAvifSrcSet"
+                :sizes="profile.imageSources.mobileSizes"
+                type="image/avif"
+              />
+              <source
+                media="(max-width: 1199px)"
+                :srcset="profile.imageSources.mobileWebpSrcSet"
+                :sizes="profile.imageSources.mobileSizes"
+                type="image/webp"
+              />
               <img
-                :src="RESPONSIVE_FALLBACK_IMAGE"
+                :src="profile.imageSources.fallbackSrc"
                 :alt="`Imagen de perfil ${profile.name}`"
                 class="h-full w-full object-cover transition-transform duration-350 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 :class="isMobileExpanded(profile.id) ? 'scale-[1.02]' : ''"
-                :loading="profile.id === preparedProfiles[0]?.id ? 'eager' : 'lazy'"
-                :fetchpriority="profile.id === preparedProfiles[0]?.id ? 'high' : 'low'"
+                :loading="profile.preloadPriority ? 'eager' : 'lazy'"
+                :fetchpriority="profile.preloadPriority ? 'high' : 'low'"
+                :width="profile.imageSources.width"
+                :height="profile.imageSources.height"
                 decoding="async"
               />
             </picture>
@@ -147,13 +182,26 @@ const toggleMobileProfile = (profile) => {
               class="group/card relative min-w-0 basis-0 grow overflow-hidden rounded-[22px] border border-gr-border/34 bg-white/84 shadow-[0_12px_26px_rgba(47,86,104,0.09)] transition-[flex-grow,border-color,box-shadow,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:grow-[0.9] hover:grow-[2.2] hover:border-gr-gold/55 hover:shadow-[0_18px_38px_rgba(47,86,104,0.15)] focus-within:grow-[2.2] focus-within:border-gr-gold/55 focus-within:shadow-[0_18px_38px_rgba(47,86,104,0.15)]"
             >
               <picture class="block h-full w-full">
-                <source media="(min-width: 1200px)" :srcset="profile.image" />
+                <source
+                  media="(min-width: 1200px)"
+                  :srcset="profile.imageSources.desktopAvifSrcSet"
+                  :sizes="profile.imageSources.desktopSizes"
+                  type="image/avif"
+                />
+                <source
+                  media="(min-width: 1200px)"
+                  :srcset="profile.imageSources.desktopWebpSrcSet"
+                  :sizes="profile.imageSources.desktopSizes"
+                  type="image/webp"
+                />
                 <img
-                  :src="RESPONSIVE_FALLBACK_IMAGE"
+                  :src="profile.imageSources.fallbackSrc"
                   :alt="`Imagen de perfil ${profile.name}`"
                   class="h-full w-full object-cover transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-[1.04] group-focus-within/card:scale-[1.04]"
                   :loading="rowIndex === 0 ? 'eager' : 'lazy'"
-                  :fetchpriority="rowIndex === 0 && profileIndex === 0 ? 'high' : 'low'"
+                  :fetchpriority="rowIndex === 0 && profileIndex < 2 ? 'high' : 'low'"
+                  :width="profile.imageSources.width"
+                  :height="profile.imageSources.height"
                   decoding="async"
                 />
               </picture>
@@ -180,7 +228,10 @@ const toggleMobileProfile = (profile) => {
                   class="group/cta relative z-20 inline-flex items-center gap-[10px] rounded-full border border-gr-gold bg-gr-gold px-[22px] py-[13px] font-space text-[1.04rem] font-[600] leading-none text-white transition-[background-color,border-color,box-shadow,transform] duration-200 hover:-translate-y-[1px] hover:border-gr-gold/90 hover:bg-[rgb(186_161_71_/_0.9)] hover:shadow-[0_10px_22px_rgba(186,161,71,0.22)] focus-visible:-translate-y-[1px] focus-visible:border-gr-gold/90 focus-visible:bg-[rgb(186_161_71_/_0.9)] focus-visible:shadow-[0_10px_22px_rgba(186,161,71,0.22)]"
                 >
                   <span>M&aacute;s</span>
-                  <span aria-hidden="true" class="text-[1.08rem] leading-none transition-transform duration-200 group-hover/cta:translate-x-[2px] group-focus-visible/cta:translate-x-[2px]">&rarr;</span>
+                  <span
+                    aria-hidden="true"
+                    class="text-[1.08rem] leading-none transition-transform duration-200 group-hover/cta:translate-x-[2px] group-focus-visible/cta:translate-x-[2px]"
+                  >&rarr;</span>
                 </a>
               </div>
 
@@ -215,4 +266,3 @@ const toggleMobileProfile = (profile) => {
     </div>
   </section>
 </template>
-

@@ -41,8 +41,6 @@ function handleSubmit() {
 
 <template>
   <section class="relative overflow-hidden pb-[64px] pt-[20px] md:pb-[90px] md:pt-[30px]">
-    <span class="pointer-events-none absolute left-1/2 top-[-140px] h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-gr-gold/12 blur-3xl" aria-hidden="true"></span>
-
     <div class="mx-auto w-full max-w-[1200px]">
       <section
         class="relative overflow-hidden rounded-[24px] border border-gr-border/26 bg-[#f5f0de] shadow-[0_28px_56px_rgba(20,57,73,0.14)] reveal-up"

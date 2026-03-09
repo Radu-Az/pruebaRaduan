@@ -96,6 +96,8 @@ const structuredDataBlocks = [...defaultStructuredData, ...structuredData];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    <slot name="head" />
+
     <title>{pageTitle}</title>
 
     <script is:inline>

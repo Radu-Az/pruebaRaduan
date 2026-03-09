@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder presente</title>
+  <desc id="desc">Ilustracion abstracta para la etapa actual</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f3d4c"/>
+      <stop offset="100%" stop-color="#2f5668"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)" rx="36"/>
+  <circle cx="912" cy="172" r="126" fill="#baa147" opacity="0.18"/>
+  <circle cx="252" cy="546" r="98" fill="#ffffff" opacity="0.08"/>
+  <rect x="156" y="162" width="888" height="438" rx="34" fill="#ffffff" opacity="0.06"/>
+  <rect x="224" y="240" width="252" height="190" rx="24" fill="#ffffff" opacity="0.9"/>
+  <rect x="518" y="240" width="252" height="190" rx="24" fill="#ffffff" opacity="0.18"/>
+  <rect x="812" y="240" width="164" height="190" rx="24" fill="#ffffff" opacity="0.1"/>
+  <rect x="224" y="474" width="752" height="16" rx="8" fill="#ffffff" opacity="0.18"/>
+  <rect x="224" y="516" width="612" height="16" rx="8" fill="#ffffff" opacity="0.12"/>
+  <text x="156" y="654" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="700">ARCHIVO 05</text>
+  <text x="156" y="702" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" opacity="0.72">Presente y siguiente capitulo</text>
+</svg>

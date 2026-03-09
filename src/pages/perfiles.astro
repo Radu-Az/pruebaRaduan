@@ -1,7 +1,82 @@
 ---
+import { getImage } from "astro:assets";
 import SiteHeader from "../components/header/SiteHeader.astro";
 import ProfilesSection from "../components/profiles/ProfilesSection.vue";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import perfilPropAnimales from "../assets/profiles/PerfilPropAnimales.png";
+import perfilProfesionales from "../assets/profiles/PerfilProfesionales.png";
+import perfilComercializadora from "../assets/profiles/PerfilComercializadora.png";
+import perfilEntidades from "../assets/profiles/PerfilEntidades.png";
+import perfilClinicaVet from "../assets/profiles/PerfilClinicaVet.png";
+import perfilFabrica from "../assets/profiles/PerfilFabrica.png";
+import perfilLaboratorio from "../assets/profiles/PerfilLaboratorio.png";
+
+const mobileImageSizes = "(min-width: 768px) 47vw, calc(100vw - 32px)";
+const desktopImageSizes = "(min-width: 1440px) 24vw, (min-width: 1200px) 27vw, 100vw";
+
+const profileImageSources = {
+  "propietarios-animales": perfilPropAnimales,
+  profesionales: perfilProfesionales,
+  comercializadoras: perfilComercializadora,
+  entidades: perfilEntidades,
+  "clinica-veterinaria": perfilClinicaVet,
+  fabrica: perfilFabrica,
+  laboratorio: perfilLaboratorio
+};
+
+const optimizedProfileImages = Object.fromEntries(
+  await Promise.all(
+    Object.entries(profileImageSources).map(async ([profileId, source]) => {
+      const [mobileAvif, mobileWebp, desktopAvif, desktopWebp] = await Promise.all([
+        getImage({
+          src: source,
+          format: "avif",
+          quality: 50,
+          widths: [360, 540, 720, 960]
+        }),
+        getImage({
+          src: source,
+          format: "webp",
+          quality: 60,
+          widths: [360, 540, 720, 960]
+        }),
+        getImage({
+          src: source,
+          format: "avif",
+          quality: 50,
+          widths: [420, 640, 860, 1080]
+        }),
+        getImage({
+          src: source,
+          format: "webp",
+          quality: 60,
+          widths: [420, 640, 860, 1080]
+        })
+      ]);
+
+      return [
+        profileId,
+        {
+          mobileAvifSrc: mobileAvif.src,
+          mobileAvifSrcSet: mobileAvif.srcSet.attribute || mobileAvif.src,
+          mobileWebpSrc: mobileWebp.src,
+          mobileWebpSrcSet: mobileWebp.srcSet.attribute || mobileWebp.src,
+          mobileSizes: mobileImageSizes,
+          desktopAvifSrc: desktopAvif.src,
+          desktopAvifSrcSet: desktopAvif.srcSet.attribute || desktopAvif.src,
+          desktopWebpSrc: desktopWebp.src,
+          desktopWebpSrcSet: desktopWebp.srcSet.attribute || desktopWebp.src,
+          desktopSizes: desktopImageSizes,
+          fallbackSrc: mobileWebp.src,
+          width: source.width,
+          height: source.height
+        }
+      ];
+    })
+  )
+);
+
+const firstProfileImage = optimizedProfileImages["propietarios-animales"];
 ---
 
 <BaseLayout
@@ -9,6 +84,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   description="Perfiles de acceso de GeneraRecetas para propietarios, profesionales, comercializadoras, entidades y perfiles del sector veterinario y ganadero."
   canonical="/perfiles"
 >
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href={firstProfileImage.mobileAvifSrc}
+      imagesrcset={firstProfileImage.mobileAvifSrcSet}
+      imagesizes={firstProfileImage.mobileSizes}
+      media="(max-width: 1199px)"
+      type="image/avif"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={firstProfileImage.desktopAvifSrc}
+      imagesrcset={firstProfileImage.desktopAvifSrcSet}
+      imagesizes={firstProfileImage.desktopSizes}
+      media="(min-width: 1200px)"
+      type="image/avif"
+      fetchpriority="high"
+    />
+  </Fragment>
+
   <style is:inline>
     .profiles-stage {
       opacity: 0;
@@ -42,7 +140,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <main class="px-[14px] pb-0 pt-[24px] md:pt-[30px] min-[1200px]:px-[20px] min-[1200px]:pt-[38px]">
     <div class="profiles-stage">
-      <ProfilesSection client:media="(max-width: 1199px)" />
+      <ProfilesSection profileImages={optimizedProfileImages} client:media="(max-width: 1199px)" />
     </div>
   </main>
 </BaseLayout>

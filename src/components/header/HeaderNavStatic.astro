@@ -49,19 +49,19 @@ const languageOptions = [
       </button>
       <span class="absolute -bottom-[6px] left-0 h-[2px] w-full origin-left scale-x-0 bg-gr-blue transition-transform duration-200 ease-out group-hover/desktop-resources:scale-x-100 group-focus-within/desktop-resources:scale-x-100"></span>
 
-      <div class="pointer-events-none absolute left-0 top-[calc(100%+12px)] z-[360] w-[314px] origin-top-left translate-y-[8px] rounded-[12px] border border-gr-border bg-gr-bg p-[10px] opacity-0 shadow-[0_12px_24px_rgba(47,86,104,0.14)] transition-[opacity,transform] duration-[430ms] ease-[cubic-bezier(0.4,0,0.2,1)] before:absolute before:-top-[12px] before:left-0 before:right-0 before:h-[12px] before:content-[''] group-hover/desktop-resources:pointer-events-auto group-hover/desktop-resources:translate-y-0 group-hover/desktop-resources:opacity-100 group-focus-within/desktop-resources:pointer-events-auto group-focus-within/desktop-resources:translate-y-0 group-focus-within/desktop-resources:opacity-100">
+      <div class="pointer-events-none absolute left-0 top-[calc(100%+12px)] z-[360] w-[344px] origin-top-left translate-y-[8px] rounded-[14px] border border-black/[0.08] bg-white p-[12px] opacity-0 shadow-[0_16px_32px_rgba(47,86,104,0.08)] transition-[opacity,transform] duration-[430ms] ease-[cubic-bezier(0.4,0,0.2,1)] before:absolute before:-top-[12px] before:left-0 before:right-0 before:h-[12px] before:content-[''] group-hover/desktop-resources:pointer-events-auto group-hover/desktop-resources:translate-y-0 group-hover/desktop-resources:opacity-100 group-focus-within/desktop-resources:pointer-events-auto group-focus-within/desktop-resources:translate-y-0 group-focus-within/desktop-resources:opacity-100">
         {resourcesItems.map((item) => (
           <a
             href={item.href}
             data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
-            class="group/resource-card mb-[8px] flex items-start gap-[10px] rounded-[10px] border border-gr-border bg-white/80 px-[10px] py-[9px] text-left transition-[border-color,box-shadow,background-color] duration-200 last:mb-0 hover:border-gr-gold hover:bg-white hover:shadow-[0_6px_14px_rgba(47,86,104,0.12)]"
+            class="group/resource-card mb-[8px] flex items-center gap-[12px] rounded-[12px] border border-black/[0.08] bg-white px-[12px] py-[11px] text-left transition-[border-color,box-shadow] duration-200 last:mb-0 hover:border-gr-gold/42 hover:shadow-[0_8px_18px_rgba(47,86,104,0.08)]"
           >
-            <span class="inline-flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[8px] border border-gr-border bg-gr-bg text-gr-blue">
-              <ResourceIcon name={item.icon} class="h-[18px] w-[18px]" />
+            <span class="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[10px] border border-gr-gold/40 bg-gr-gold text-white">
+              <ResourceIcon name={item.icon} class="h-[22px] w-[22px]" />
             </span>
-            <span class="block">
-              <span class="block text-[0.98rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
-              <span class="mt-[3px] block text-[0.8rem] leading-[1.2] text-gr-muted">{item.subtitle}</span>
+            <span class="block min-w-0">
+              <span class="block text-[1rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+              <span class="mt-[5px] block max-w-[220px] text-[0.82rem] leading-[1.3] text-gr-muted">{item.subtitle}</span>
             </span>
           </a>
         ))}
@@ -89,25 +89,31 @@ const languageOptions = [
         </button>
         <span class="absolute -bottom-[6px] left-0 h-[2px] w-full origin-left scale-x-0 bg-gr-blue transition-transform duration-200 ease-out group-hover/desktop-pharmacy:scale-x-100 group-focus-within/desktop-pharmacy:scale-x-100"></span>
 
-        <div class="pointer-events-none absolute left-0 top-[calc(100%+12px)] z-[360] w-[248px] origin-top-left translate-y-[8px] rounded-[12px] border border-gr-border bg-gr-bg p-[10px] opacity-0 shadow-[0_12px_24px_rgba(47,86,104,0.14)] transition-[opacity,transform] duration-[430ms] ease-[cubic-bezier(0.4,0,0.2,1)] before:absolute before:-top-[12px] before:left-0 before:right-0 before:h-[12px] before:content-[''] group-hover/desktop-pharmacy:pointer-events-auto group-hover/desktop-pharmacy:translate-y-0 group-hover/desktop-pharmacy:opacity-100 group-focus-within/desktop-pharmacy:pointer-events-auto group-focus-within/desktop-pharmacy:translate-y-0 group-focus-within/desktop-pharmacy:opacity-100">
+        <div class="pointer-events-none absolute left-0 top-[calc(100%+12px)] z-[360] w-[320px] origin-top-left translate-y-[8px] rounded-[14px] border border-black/[0.08] bg-white p-[12px] opacity-0 shadow-[0_16px_32px_rgba(47,86,104,0.08)] transition-[opacity,transform] duration-[430ms] ease-[cubic-bezier(0.4,0,0.2,1)] before:absolute before:-top-[12px] before:left-0 before:right-0 before:h-[12px] before:content-[''] group-hover/desktop-pharmacy:pointer-events-auto group-hover/desktop-pharmacy:translate-y-0 group-hover/desktop-pharmacy:opacity-100 group-focus-within/desktop-pharmacy:pointer-events-auto group-focus-within/desktop-pharmacy:translate-y-0 group-focus-within/desktop-pharmacy:opacity-100">
           {pharmacyItems.map((item) => (
             isRealLink(item.href) ? (
               <a
                 href={item.href}
                 data-astro-prefetch={isInternalLink(item.href) ? true : undefined}
-                class="group/resource-card mb-[8px] flex items-center gap-[10px] rounded-[10px] border border-gr-border bg-white/80 px-[10px] py-[10px] text-left transition-[border-color,box-shadow,background-color] duration-200 last:mb-0 hover:border-gr-gold hover:bg-white hover:shadow-[0_6px_14px_rgba(47,86,104,0.12)]"
+                class="group/resource-card mb-[8px] flex items-center gap-[12px] rounded-[12px] border border-black/[0.08] bg-white px-[12px] py-[11px] text-left transition-[border-color,box-shadow] duration-200 last:mb-0 hover:border-gr-gold/42 hover:shadow-[0_8px_18px_rgba(47,86,104,0.08)]"
               >
-                <span class="inline-flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[8px] border border-gr-border bg-gr-bg text-gr-blue">
-                  <ResourceIcon name={item.icon} class="h-[18px] w-[18px]" />
+                <span class="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[10px] border border-gr-gold/40 bg-gr-gold text-white">
+                  <ResourceIcon name={item.icon} class="h-[22px] w-[22px]" />
                 </span>
-                <span class="block text-[0.98rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+                <span class="block min-w-0">
+                  <span class="block text-[1rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+                  <span class="mt-[5px] block max-w-[206px] text-[0.82rem] leading-[1.3] text-gr-muted">{item.subtitle}</span>
+                </span>
               </a>
             ) : (
-              <span class="mb-[8px] flex items-center gap-[10px] rounded-[10px] border border-gr-border bg-white/80 px-[10px] py-[10px] text-left last:mb-0">
-                <span class="inline-flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[8px] border border-gr-border bg-gr-bg text-gr-blue">
-                  <ResourceIcon name={item.icon} class="h-[18px] w-[18px]" />
+              <span class="mb-[8px] flex items-center gap-[12px] rounded-[12px] border border-black/[0.08] bg-white px-[12px] py-[11px] text-left last:mb-0">
+                <span class="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[10px] border border-gr-gold/40 bg-gr-gold text-white">
+                  <ResourceIcon name={item.icon} class="h-[22px] w-[22px]" />
                 </span>
-                <span class="block text-[0.98rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+                <span class="block min-w-0">
+                  <span class="block text-[1rem] leading-[1.15] font-medium text-gr-blue">{item.title}</span>
+                  <span class="mt-[5px] block max-w-[206px] text-[0.82rem] leading-[1.3] text-gr-muted">{item.subtitle}</span>
+                </span>
               </span>
             )
           ))}
@@ -163,7 +169,7 @@ const languageOptions = [
 
     <details class="language-switcher group/language relative" data-language-switcher>
       <summary
-        class="inline-flex min-h-[36px] min-w-[70px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-gr-border/28 bg-white px-[8px] py-[6px] text-black shadow-[0_6px_14px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-gr-border/40 hover:shadow-[0_8px_16px_rgba(47,86,104,0.08)] focus-visible:border-gr-border/40 focus-visible:shadow-[0_8px_16px_rgba(47,86,104,0.08)]"
+        class="inline-flex min-h-[36px] min-w-[70px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-black/40 bg-transparent px-[8px] py-[6px] text-black shadow-[0_6px_14px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-black/55 hover:shadow-[0_8px_16px_rgba(47,86,104,0.08)] focus-visible:border-black/55 focus-visible:shadow-[0_8px_16px_rgba(47,86,104,0.08)]"
         aria-label="Seleccionar idioma"
       >
         <svg
@@ -242,7 +248,7 @@ const languageOptions = [
       <div class="mb-[20px] flex w-full max-w-[460px] items-center justify-center">
         <details class="language-switcher group/language relative" data-language-switcher>
           <summary
-            class="inline-flex min-h-[40px] min-w-[74px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-gr-border/28 bg-white px-[9px] py-[6px] text-black shadow-[0_8px_16px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-gr-border/40 hover:shadow-[0_10px_18px_rgba(47,86,104,0.08)] focus-visible:border-gr-border/40 focus-visible:shadow-[0_10px_18px_rgba(47,86,104,0.08)]"
+            class="inline-flex min-h-[40px] min-w-[74px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-black/40 bg-transparent px-[9px] py-[6px] text-black shadow-[0_8px_16px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-black/55 hover:shadow-[0_10px_18px_rgba(47,86,104,0.08)] focus-visible:border-black/55 focus-visible:shadow-[0_10px_18px_rgba(47,86,104,0.08)]"
             aria-label="Seleccionar idioma"
           >
             <svg
@@ -436,7 +442,7 @@ const languageOptions = [
   }
 
   .language-switcher[open] > summary {
-    border-color: rgb(47 86 104 / 32%);
+    border-color: rgb(0 0 0 / 0.55);
     box-shadow: 0 10px 18px rgb(47 86 104 / 8%);
   }
 
