@@ -3,16 +3,18 @@ import { getImage } from "astro:assets";
 import SiteHeader from "../components/header/SiteHeader.astro";
 import ProfilesSection from "../components/profiles/ProfilesSection.vue";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import perfilPropAnimales from "../assets/profiles/PerfilPropAnimales.png";
-import perfilProfesionales from "../assets/profiles/PerfilProfesionales.png";
-import perfilComercializadora from "../assets/profiles/PerfilComercializadora.png";
-import perfilEntidades from "../assets/profiles/PerfilEntidades.png";
-import perfilClinicaVet from "../assets/profiles/PerfilClinicaVet.png";
-import perfilFabrica from "../assets/profiles/PerfilFabrica.png";
-import perfilLaboratorio from "../assets/profiles/PerfilLaboratorio.png";
+import perfilPropAnimales from "../assets/profiles/PerfilPropAnimales (1).webp";
+import perfilProfesionales from "../assets/profiles/PerfilPropAnimales (7).webp";
+import perfilComercializadora from "../assets/profiles/PerfilPropAnimales (3).webp";
+import perfilEntidades from "../assets/profiles/PerfilPropAnimales (4).webp";
+import perfilClinicaVet from "../assets/profiles/PerfilPropAnimales (2).webp";
+import perfilFabrica from "../assets/profiles/PerfilPropAnimales (5).webp";
+import perfilLaboratorio from "../assets/profiles/PerfilPropAnimales (6).webp";
 
 const mobileImageSizes = "(min-width: 768px) 47vw, calc(100vw - 32px)";
 const desktopImageSizes = "(min-width: 1440px) 24vw, (min-width: 1200px) 27vw, 100vw";
+const profileMobileWidths = [320, 480, 640, 960];
+const profileDesktopWidths = [480, 720, 960];
 
 const profileImageSources = {
   "propietarios-animales": perfilPropAnimales,
@@ -31,26 +33,26 @@ const optimizedProfileImages = Object.fromEntries(
         getImage({
           src: source,
           format: "avif",
-          quality: 50,
-          widths: [360, 540, 720, 960]
+          quality: 45,
+          widths: profileMobileWidths
         }),
         getImage({
           src: source,
           format: "webp",
-          quality: 60,
-          widths: [360, 540, 720, 960]
+          quality: 58,
+          widths: profileMobileWidths
         }),
         getImage({
           src: source,
           format: "avif",
-          quality: 50,
-          widths: [420, 640, 860, 1080]
+          quality: 45,
+          widths: profileDesktopWidths
         }),
         getImage({
           src: source,
           format: "webp",
-          quality: 60,
-          widths: [420, 640, 860, 1080]
+          quality: 58,
+          widths: profileDesktopWidths
         })
       ]);
 
