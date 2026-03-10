@@ -263,6 +263,27 @@ onBeforeUnmount(() => {
           </h2>
         </div>
 
+        <div class="mt-[-2px] flex flex-col items-center justify-center">
+          <p class="gr-body mx-auto max-w-[60ch] text-center text-gr-blue/84">
+            Descubre en <strong class="font-[700] text-gr-blue">Perfiles</strong> qu&eacute; experiencia y servicios
+            encajan contigo.
+          </p>
+          <a
+            href="/perfiles"
+            class="group mt-[12px] flex h-[42px] w-fit items-center justify-center gap-[8px] rounded-[10px] border border-gr-blue bg-gr-blue px-[16px] font-space text-[0.94rem] font-[600] tracking-[0.02em] text-white shadow-[0_8px_20px_rgba(47,86,104,0.24)] transition-[background-color,border-color,transform,box-shadow] duration-200 hover:border-gr-blue/90 hover:bg-gr-blue/90 hover:shadow-[0_9px_22px_rgba(47,86,104,0.28)] active:scale-[0.98]"
+          >
+            <span>Ir a Perfiles</span>
+            <svg
+              viewBox="0 0 24 24"
+              class="h-[14px] w-[14px] fill-none stroke-current stroke-[2.2] transition-transform duration-300 ease-out group-hover:translate-x-[3px]"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="m13 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </div>
+
         <div class="reveal-up reveal-delay-1">
           <div class="relative left-1/2 w-screen -translate-x-1/2 px-[14px] md:px-[22px] min-[1024px]:w-[calc(100vw+240px)] min-[1024px]:px-[12px] min-[1440px]:w-[calc(100vw+320px)] min-[1440px]:px-[18px]">
             <div
@@ -285,43 +306,22 @@ onBeforeUnmount(() => {
                   <article
                     v-for="service in services"
                     :key="service.id"
-                    class="relative shrink-0 basis-[calc(100%-28px)] overflow-hidden rounded-[18px] border border-gr-border/55 bg-transparent px-[14px] py-[10px] text-left md:basis-[86%] md:px-[18px] md:py-[12px]"
+                    class="relative shrink-0 basis-[calc(100%-28px)] overflow-hidden rounded-[20px] border border-gr-border/38 bg-transparent px-[14px] py-[10px] text-left md:basis-[86%] md:px-[18px] md:py-[12px]"
                     :style="{ ...getSlideStyle(), ...getCardThemeStyle(service.id) }"
                   >
                     <span
-                      class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(240,244,247,0.96)_100%)]"
+                      class="pointer-events-none absolute inset-0"
+                      style="background-color: rgba(248,250,252,0.98);"
                       aria-hidden="true"
                     ></span>
                     <span
-                      class="pointer-events-none absolute right-[-18%] top-[-16%] h-[210px] w-[210px] rounded-full blur-3xl"
-                      style="background: radial-gradient(circle, var(--service-glow) 0%, rgba(255,255,255,0) 72%)"
+                      class="pointer-events-none absolute left-0 top-0 h-[4px] w-full"
+                      style="background: linear-gradient(90deg, var(--service-glow) 0%, var(--service-edge) 100%);"
                       aria-hidden="true"
                     ></span>
                     <span
-                      class="pointer-events-none absolute bottom-[-18%] left-[-12%] h-[180px] w-[180px] rounded-full blur-3xl"
-                      style="background: radial-gradient(circle, var(--service-accent) 0%, rgba(255,255,255,0) 74%)"
-                      aria-hidden="true"
-                    ></span>
-                    <span
-                      class="pointer-events-none absolute right-[22px] top-[24px] h-[86px] w-[86px] opacity-[0.42] md:h-[108px] md:w-[108px]"
-                      style="background-image: radial-gradient(var(--service-edge) 1.15px, transparent 1.15px); background-size: 14px 14px;"
-                      aria-hidden="true"
-                    ></span>
-                    <span
-                      class="pointer-events-none absolute -left-[28px] top-1/2 h-[112px] w-[112px] -translate-y-1/2 rounded-full border border-white/72 opacity-[0.8] md:h-[136px] md:w-[136px]"
-                      style="box-shadow: inset 0 0 0 1px var(--service-edge);"
-                      aria-hidden="true"
-                    ></span>
-                    <span
-                      class="pointer-events-none absolute inset-0 opacity-[0.7]"
-                      style="background:
-                        radial-gradient(circle at 82% 20%, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0) 34%),
-                        radial-gradient(circle at 18% 78%, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0) 30%),
-                        linear-gradient(180deg, rgba(47,86,104,0) 0%, rgba(47,86,104,0.03) 100%)"
-                      aria-hidden="true"
-                    ></span>
-                    <span
-                      class="pointer-events-none absolute inset-[14px] rounded-[14px] border border-white/70"
+                      class="pointer-events-none absolute bottom-[18px] right-[14px] h-[2px] w-[78px] -rotate-[12deg] rounded-full opacity-[0.62]"
+                      style="background-color: var(--service-edge);"
                       aria-hidden="true"
                     ></span>
 
@@ -426,18 +426,6 @@ onBeforeUnmount(() => {
             </button>
           </div>
 
-          <div class="mt-[18px] flex flex-col items-center justify-center min-[1200px]:mt-[22px]">
-            <p class="gr-body mx-auto max-w-[60ch] text-center text-gr-blue/84">
-              Descubre en <strong class="font-[700] text-gr-blue">Perfiles</strong> qu&eacute; experiencia y servicios
-              encajan contigo.
-            </p>
-            <a
-              href="/perfiles"
-              class="mt-[14px] flex h-[42px] w-fit items-center justify-center rounded-[10px] border border-gr-blue bg-gr-blue px-[16px] font-space text-[0.94rem] font-[600] tracking-[0.02em] text-white shadow-[0_8px_20px_rgba(47,86,104,0.24)] transition-[background-color,border-color,transform,box-shadow] duration-200 hover:border-gr-blue/90 hover:bg-gr-blue/90 hover:shadow-[0_9px_22px_rgba(47,86,104,0.28)] active:scale-[0.98]"
-            >
-              Ir a Perfiles
-            </a>
-          </div>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ const IMAGE_TTL_MS = 15 * 60 * 1000;
 const IMAGE_FETCH_TIMEOUT_MS = 3500;
 const NORMALIZE_CONCURRENCY = 8;
 
+// TODO: whitelist no funcional
 const MAPA_WHITELIST_TERMS = [
   "veterin",
   "ganader",
@@ -25,8 +26,7 @@ const MAPA_WHITELIST_TERMS = [
   "vacuno",
   "bovin",
   "porcin",
-  "granja",
-  "huevos"
+  "granja"
 ];
 
 const BLACKLIST_TERMS = [

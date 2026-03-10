@@ -167,7 +167,7 @@ const languageOptions = [
       )}
     </div>
 
-    <details class="language-switcher group/language relative" data-language-switcher>
+    <details class="language-switcher group/language relative" data-language-switcher="desktop">
       <summary
         class="inline-flex min-h-[36px] min-w-[70px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-black/40 bg-transparent px-[8px] py-[6px] text-black shadow-[0_6px_14px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-black/55 hover:shadow-[0_8px_16px_rgba(47,86,104,0.08)] focus-visible:border-black/55 focus-visible:shadow-[0_8px_16px_rgba(47,86,104,0.08)]"
         aria-label="Seleccionar idioma"
@@ -246,7 +246,7 @@ const languageOptions = [
       </div>
 
       <div class="mb-[20px] flex w-full max-w-[460px] items-center justify-center">
-        <details class="language-switcher group/language relative" data-language-switcher>
+        <details class="language-switcher group/language relative" data-language-switcher="mobile">
           <summary
             class="inline-flex min-h-[40px] min-w-[74px] cursor-pointer list-none items-center justify-center gap-[6px] rounded-[6px] border border-black/40 bg-transparent px-[9px] py-[6px] text-black shadow-[0_8px_16px_rgba(47,86,104,0.05)] transition-[border-color,box-shadow] duration-200 hover:border-black/55 hover:shadow-[0_10px_18px_rgba(47,86,104,0.08)] focus-visible:border-black/55 focus-visible:shadow-[0_10px_18px_rgba(47,86,104,0.08)]"
             aria-label="Seleccionar idioma"
@@ -477,32 +477,24 @@ const languageOptions = [
   }
 </style>
 
-<script is:inline define:vars={{ defaultLanguage }}>
+<script is:inline define:vars={{ defaultLanguage, languageOptions }}>
   (() => {
-    const switchers = Array.from(document.querySelectorAll("[data-language-switcher]"));
-    const currentLabels = Array.from(document.querySelectorAll("[data-language-current]"));
-    const optionButtons = Array.from(document.querySelectorAll("[data-language-option]"));
+    const desktopQuery = '[data-language-switcher="desktop"]';
+    const mobileQuery = '[data-language-switcher="mobile"]';
+    const storageKey = "gr-language";
+    const desktopMedia = window.matchMedia("(min-width: 1200px)");
+    const mobileMenuToggle = document.querySelector("#mobile-menu-toggle");
+    const options = Array.isArray(languageOptions) ? languageOptions : [];
 
-    if (!switchers.length || !currentLabels.length || !optionButtons.length) {
+    if (!options.length) {
       return;
     }
 
-    const storageKey = "gr-language";
-    const labels = new Map();
-    const allowed = new Set();
-
-    optionButtons.forEach((button) => {
-      const value = button.getAttribute("data-language-option");
-      const shortLabel = button.querySelector("span")?.textContent?.trim();
-
-      if (!value || !shortLabel) {
-        return;
-      }
-
-      allowed.add(value);
-      labels.set(value, shortLabel);
-    });
-
+    const labels = new Map(options.map((option) => [option.value, option.shortLabel]));
+    const allowed = new Set(options.map((option) => option.value));
+    const getFallbackLanguage = () =>
+      allowed.has(defaultLanguage) ? defaultLanguage : options[0]?.value ?? "es";
+    const normalizeLanguage = (value) => (allowed.has(value) ? value : getFallbackLanguage());
     const getStoredLanguage = () => {
       try {
         const stored = window.localStorage.getItem(storageKey);
@@ -512,75 +504,172 @@ const languageOptions = [
       }
     };
 
-    const applyLanguage = (value) => {
-      const nextValue = allowed.has(value) ? value : defaultLanguage;
-
-      currentLabels.forEach((label) => {
-        label.textContent = labels.get(nextValue) || nextValue.toUpperCase();
-      });
-
-      optionButtons.forEach((button) => {
-        const isActive = button.getAttribute("data-language-option") === nextValue;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-pressed", isActive ? "true" : "false");
-      });
-
-      document.documentElement.lang = nextValue;
-
+    const persistLanguage = (value) => {
       try {
-        window.localStorage.setItem(storageKey, nextValue);
+        window.localStorage.setItem(storageKey, value);
       } catch {
         // Ignore storage failures.
       }
     };
 
-    applyLanguage(getStoredLanguage() || defaultLanguage);
+    const getScopeState = (scope) => {
+      const switchers = Array.from(document.querySelectorAll(scope));
+      const currentLabels = switchers.flatMap((switcher) =>
+        Array.from(switcher.querySelectorAll("[data-language-current]"))
+      );
+      const optionButtons = switchers.flatMap((switcher) =>
+        Array.from(switcher.querySelectorAll("[data-language-option]"))
+      );
 
-    optionButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const nextValue = button.getAttribute("data-language-option");
+      return {
+        switchers,
+        currentLabels,
+        optionButtons
+      };
+    };
 
-        if (!nextValue) {
-          return;
-        }
-
-        applyLanguage(nextValue);
-        switchers.forEach((switcher) => {
-          switcher.removeAttribute("open");
-        });
-      });
-    });
-
-    switchers.forEach((switcher) => {
-      switcher.addEventListener("toggle", () => {
-        if (!switcher.hasAttribute("open")) {
-          return;
-        }
-
-        switchers.forEach((otherSwitcher) => {
-          if (otherSwitcher === switcher) {
-            return;
-          }
-
-          otherSwitcher.removeAttribute("open");
-        });
-      });
-    });
-
-    document.addEventListener("click", (event) => {
-      const target = event.target;
-
-      if (!(target instanceof Node)) {
-        return;
-      }
-
-      if (switchers.some((switcher) => switcher.contains(target))) {
-        return;
-      }
-
+    const closeSwitchers = (switchers) => {
       switchers.forEach((switcher) => {
         switcher.removeAttribute("open");
       });
-    });
+    };
+
+    const applyLanguageToScope = (scopeState, value) => {
+      if (!scopeState) {
+        return;
+      }
+
+      scopeState.currentLabels.forEach((label) => {
+        label.textContent = labels.get(value) || value.toUpperCase();
+      });
+
+      scopeState.optionButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-language-option") === value;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    };
+
+    const bindScope = (scopeState, setLanguage) => {
+      if (!scopeState.switchers.length) {
+        return;
+      }
+
+      scopeState.optionButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextValue = button.getAttribute("data-language-option");
+
+          if (!nextValue) {
+            return;
+          }
+
+          setLanguage(nextValue);
+          closeSwitchers(scopeState.switchers);
+        });
+      });
+
+      scopeState.switchers.forEach((switcher) => {
+        switcher.addEventListener("toggle", () => {
+          if (!switcher.hasAttribute("open")) {
+            return;
+          }
+
+          scopeState.switchers.forEach((otherSwitcher) => {
+            if (otherSwitcher === switcher) {
+              return;
+            }
+
+            otherSwitcher.removeAttribute("open");
+          });
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (!(target instanceof Node)) {
+          return;
+        }
+
+        if (scopeState.switchers.some((switcher) => switcher.contains(target))) {
+          return;
+        }
+
+        closeSwitchers(scopeState.switchers);
+      });
+    };
+
+    let desktopScopeState = null;
+    let mobileScopeState = null;
+    let desktopInitialized = false;
+    let mobileInitialized = false;
+    let currentLanguage = normalizeLanguage(getStoredLanguage() || defaultLanguage);
+
+    const setLanguage = (value) => {
+      currentLanguage = normalizeLanguage(value);
+      document.documentElement.lang = currentLanguage;
+      persistLanguage(currentLanguage);
+
+      if (desktopInitialized) {
+        applyLanguageToScope(desktopScopeState, currentLanguage);
+      }
+
+      if (mobileInitialized) {
+        applyLanguageToScope(mobileScopeState, currentLanguage);
+      }
+    };
+
+    const initDesktopScope = () => {
+      if (desktopInitialized || !desktopMedia.matches) {
+        return;
+      }
+
+      desktopScopeState = getScopeState(desktopQuery);
+      bindScope(desktopScopeState, setLanguage);
+      applyLanguageToScope(desktopScopeState, currentLanguage);
+      desktopInitialized = true;
+    };
+
+    const initMobileScope = () => {
+      if (mobileInitialized) {
+        return;
+      }
+
+      mobileScopeState = getScopeState(mobileQuery);
+      bindScope(mobileScopeState, setLanguage);
+      applyLanguageToScope(mobileScopeState, currentLanguage);
+      mobileInitialized = true;
+    };
+
+    document.documentElement.lang = currentLanguage;
+    initDesktopScope();
+
+    const onDesktopMediaChange = (event) => {
+      if (!event.matches) {
+        return;
+      }
+
+      initDesktopScope();
+    };
+
+    if (typeof desktopMedia.addEventListener === "function") {
+      desktopMedia.addEventListener("change", onDesktopMediaChange);
+    } else if (typeof desktopMedia.addListener === "function") {
+      desktopMedia.addListener(onDesktopMediaChange);
+    }
+
+    if (mobileMenuToggle instanceof HTMLInputElement) {
+      mobileMenuToggle.addEventListener(
+        "change",
+        () => {
+          if (!mobileMenuToggle.checked) {
+            return;
+          }
+
+          initMobileScope();
+        },
+        { passive: true }
+      );
+    }
   })();
 </script>
